@@ -6,6 +6,19 @@
 - 旅行攻略：https://chalersxu.github.io/display/travel/
 - 家庭健康周报：https://chalersxu.github.io/display/fhi/
 
+## 新增项目约定（2026-09-29 定，重要）
+
+以后有新的发布内容，先分清是「新项目」还是「已有项目的新一期」：
+
+| 情况 | 做法 | 得到的网址 |
+|---|---|---|
+| 已有项目出新内容（如又写了一期周报） | 在对应子目录里追加，入口页加/改一行 | 不变，如 `/display/fhi/2026-10-03/` |
+| **全新项目** | **在本仓库根下新建 `display/<项目>/index.html`，并在根 `index.html` 的栏目列表里加一个入口** | `chalersxu.github.io/display/<项目>/` |
+
+**约定：新项目一律是 display 仓库下的新子目录，不另开仓库。** 理由：链接风格统一（全部 `/display/...`）、只维护一套 Pages、不会出现多个仓库各自构建互相顶掉的情况。
+
+原始内容（HTML/Markdown 原件）不放这里——本仓库只存发布副本。原件位置见下方「更新方式」。
+
 ## 目录结构
 
 | 路径 | 用途 |
@@ -31,4 +44,4 @@
 git add -A && git commit -m "..." && git push
 ```
 
-约 30 秒后生效。内容原件：旅行攻略在 `~/Documents/deepseek-harness/default-workspace/`，周报在 `~/Documents/DSH/FHI/reports/`；本仓库只存放发布副本。
+约 30 秒后生效。内容原件：旅行攻略在 `~/Documents/deepseek-harness/default-workspace/`，周报在 `~/Documents/DSH/FHI/reports/`。
