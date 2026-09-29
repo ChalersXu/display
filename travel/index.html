@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="eZvdurBI6VAaMOniqwGobl">
+<head data-page-node-id="G49v8mtjXoUqzZbm2qBT8z">
+<meta name="robots" content="noindex,nofollow">
+
+<meta charset="UTF-8" data-page-node-id="zwvnWtZA84siURKU68xtwu">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" data-page-node-id="T35XQptw9fW0OZBMMcq2At">
+<meta name="format-detection" content="telephone=no,date=no,address=no,email=no">
+<title>国庆昆明 · 抚仙湖 · 建水亲子游</title>
+<style>
+/* ============================================================
+   html-designer · 场景 A：iPhone 旅行攻略 App 版（V21 试验）
+   V20 基础上修复 iPhone 真机适配：
+   ① 顶部 Header 增加刘海屏安全区 env(safe-area-inset-top)
+   ② backdrop-filter 补 -webkit- 前缀（iOS Safari 毛玻璃兼容）
+   ③ format-detection 屏蔽航班时间串被识别为拨号链接
+   ④ Sheet 打开时锁定 body 滚动 + dvh 高度回退
+   V19 内容全保真；呈现从"桌面表格"重构为
+   App 骨架：固定 Header + 底部 5 Tab + Day 切换 + 时间轴 + 卡片
+   ============================================================ */
+
+/* ---- 设计令牌：三类色（主 / 强调 / 中性） ---- */
+:root{
+  --primary:#1f6feb;--primary-soft:#e7f0fe;
+  --accent:#e8590c;--accent-soft:#fff0e6;
+  --green:#1a7f3a;--green-soft:#eaf5ee;
+  --bg:#f5f5f2;--surface:#ffffff;--surface-2:#ececea;
+  --ink:#1c1f23;--ink-2:#555c63;--ink-3:#8b929a;--line:#e5e5e0;
+  --red:#c0392b;--red-soft:#fdecea;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --fs-title:clamp(23px,6.5vw,27px);
+  --fs-sec-title:clamp(19px,5vw,21px);
+  --fs-card:clamp(16.5px,4.5vw,18px);
+  --fs-body:16px;--fs-sec:14px;--fs-cap:12px;
+  --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:20px;--s6:24px;--s8:32px;
+  --radius:16px;--header-h:calc(54px + env(safe-area-inset-top));
+  --nav-h:calc(62px + env(safe-area-inset-bottom));
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+html,body{width:100%;max-width:100%}
+body{margin:0;overflow-x:hidden;background:var(--bg);color:var(--ink);
+  font-family:var(--font);font-size:var(--fs-body);line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  padding-top:var(--header-h);padding-bottom:var(--nav-h)}
+img{width:100%;height:auto;display:block;object-fit:cover}
+h1,h2,h3{margin:0;line-height:1.35}
+p{margin:0}
+button{font-family:inherit}
+a{color:var(--primary);text-decoration:none}
+.num,.no-break{white-space:nowrap}
+
+/* ============ 固定顶部 Header ============ */
+.site-header{position:fixed;inset:0 0 auto 0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;gap:var(--s2);
+  height:var(--header-h);padding:0 var(--s4);padding-top:env(safe-area-inset-top);
+  background:rgba(255,255,255,.94);
+  -webkit-backdrop-filter:saturate(1.8) blur(12px);backdrop-filter:saturate(1.8) blur(12px);
+  border-bottom:.5px solid var(--line)}
+.site-header .back{font-size:24px;min-width:44px;height:44px;text-align:left;background:none;border:0;color:var(--ink);padding:0}
+.site-header .title{font-weight:650;font-size:16.5px;flex:1;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.site-header .more{background:none;border:0;min-width:44px;height:44px;font-size:21px;color:var(--ink-2);padding:0}
+
+/* ============ 主内容与 Tab ============ */
+main{width:100%;max-width:100%;padding:var(--s4) var(--s4) calc(var(--s8) + 20px)}
+main>section{display:none}
+main>section.active{display:block;animation:fadein .16s ease}
+@keyframes fadein{from{opacity:.4}to{opacity:1}}
+.page-title{font-size:var(--fs-sec-title);font-weight:750;margin:2px 0 var(--s4)}
+.sec-block{margin-bottom:var(--s6)}
+.sec-title{font-size:16px;font-weight:750;color:var(--ink);margin:0 0 var(--s3);
+  display:flex;align-items:center;gap:7px}
+.sec-title::before{content:"";width:4px;height:15px;border-radius:2px;background:var(--primary);flex:0 0 auto}
+.sec-title.warn::before{background:var(--accent)}
+
+/* ============ 固定底部导航 ============ */
+.bottom-nav{position:fixed;left:0;right:0;bottom:0;z-index:50;
+  display:grid;grid-template-columns:repeat(5,1fr);
+  background:rgba(255,255,255,.96);
+  -webkit-backdrop-filter:saturate(1.8) blur(12px);backdrop-filter:saturate(1.8) blur(12px);
+  border-top:.5px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+.bottom-nav button{border:0;background:none;color:var(--ink-3);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:1px;font-size:10.5px;min-height:44px;padding:5px 0 2px}
+.bottom-nav button .ico{font-size:20px;line-height:1}
+.bottom-nav button.active{color:var(--primary);font-weight:650}
+
+/* ============ Card ============ */
+.card{background:var(--surface);border-radius:var(--radius);padding:var(--s4);
+  box-shadow:0 1px 2px rgba(16,20,24,.05);margin-bottom:var(--s3)}
+.card:last-child{margin-bottom:0}
+.card-title{font-size:var(--fs-card);font-weight:700;display:flex;align-items:center;gap:6px;line-height:1.4}
+.card .sub{color:var(--ink-2);font-size:var(--fs-sec);margin-top:4px;line-height:1.62}
+.meta-line{display:flex;flex-wrap:wrap;gap:4px 8px;margin-top:var(--s2)}
+.tag{display:inline-block;padding:1px 9px;border-radius:999px;background:var(--surface-2);
+  color:var(--ink-2);font-size:var(--fs-cap);line-height:1.9;white-space:nowrap}
+.tag.core{background:var(--accent-soft);color:var(--accent);font-weight:650}
+.tag.sec{background:var(--green-soft);color:var(--green);font-weight:650}
+.tag.alt{background:var(--surface-2);color:var(--ink-3);font-weight:600}
+.tag.now{background:var(--primary-soft);color:var(--primary);font-weight:650}
+.tag.bad{background:var(--red-soft);color:var(--red);font-weight:700}
+.tag.warn{background:#fff6e0;color:#96600a;font-weight:700}
+
+/* ============ 首页：行程状态 ============ */
+.trip-status{background:linear-gradient(135deg,#133158 0,#1f5fa8 60%,#2d7cc9 100%);
+  color:#fff;border-radius:var(--radius);padding:var(--s5);margin-bottom:var(--s4);
+  box-shadow:0 6px 18px rgba(20,60,110,.18)}
+.trip-status h1{font-size:var(--fs-title);font-weight:800;letter-spacing:.2px}
+.trip-status .meta{opacity:.92;font-size:var(--fs-sec);margin-top:var(--s2);
+  display:flex;flex-wrap:wrap;gap:4px 14px;line-height:1.8}
+.trip-status .note{margin-top:var(--s3);font-size:var(--fs-cap);opacity:.78;line-height:1.6}
+
+/* 行动卡（行前准备期：3 个关键动作） */
+.action{background:var(--red-soft);border-radius:var(--radius);padding:var(--s4);margin-bottom:var(--s4);
+  border-left:4px solid var(--red)}
+.action .lbl{color:var(--red);font-weight:800;font-size:var(--fs-cap);letter-spacing:.06em;margin-bottom:var(--s2)}
+.action li{font-size:var(--fs-sec);line-height:1.6;margin:6px 0 0;padding-left:2px}
+.action li b{color:var(--red)}
+
+/* 核心体验高亮块 */
+.core-exp{background:var(--accent-soft);border-left:4px solid var(--accent);
+  border-radius:var(--radius);padding:var(--s4);margin-bottom:var(--s4)}
+.core-exp .lbl{color:var(--accent);font-weight:800;font-size:var(--fs-cap);letter-spacing:.06em;margin-bottom:2px}
+.core-exp h2{font-size:var(--fs-card);color:var(--ink)}
+.core-exp .time{font-size:var(--fs-sec);color:var(--accent);font-weight:650;margin-top:2px}
+
+/* ============ 行程速览行（首页 / 更多） ============ */
+.ov-row{display:flex;align-items:center;gap:var(--s3);padding:12px 0;
+  border-bottom:1px solid var(--line)}
+.ov-row:last-child{border-bottom:0}
+.ov-row .d{flex:0 0 42px;font-weight:800;color:var(--primary);font-size:15px}
+.ov-row .m{flex:1;min-width:0}
+.ov-row .m b{font-size:var(--fs-sec);display:block;line-height:1.45}
+.ov-row .m span{font-size:var(--fs-cap);color:var(--ink-3);display:block;line-height:1.5;margin-top:1px}
+.ov-row .h{flex:0 0 auto;font-size:var(--fs-cap)}
+
+/* ============ Day 切换 ============ */
+.day-tabs{display:flex;gap:var(--s2);overflow-x:auto;-webkit-overflow-scrolling:touch;
+  margin:0 -16px var(--s4);padding:2px var(--s4) 10px;scrollbar-width:none}
+.day-tabs::-webkit-scrollbar{display:none}
+.day-tabs button{flex:0 0 auto;min-height:44px;padding:5px 15px;border-radius:999px;
+  border:1px solid var(--line);background:var(--surface);color:var(--ink-2);
+  font-size:15px;font-weight:600}
+.day-tabs button .mini{display:block;font-size:10.5px;color:var(--ink-3);font-weight:500;line-height:1.3}
+.day-tabs button.active{background:var(--primary);border-color:var(--primary);color:#fff}
+.day-tabs button.active .mini{color:rgba(255,255,255,.85)}
+
+/* ============ 时间轴 ============ */
+.timeline{position:relative}
+.tl-item{position:relative;padding:0 0 var(--s5) 24px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:"";position:absolute;left:6px;top:22px;bottom:2px;width:2px;background:var(--line)}
+.tl-item:last-child::before{display:none}
+.tl-item .dot{position:absolute;left:0;top:3px;width:14px;height:14px;border-radius:50%;
+  border:2px solid var(--ink-3);background:var(--surface)}
+.tl-item.core .dot{border-color:var(--accent);background:var(--accent)}
+.tl-item .time{font-size:var(--fs-sec);color:var(--ink-2);font-weight:600;display:flex;align-items:center;gap:6px;margin-bottom:1px}
+.tl-item .tl-title{font-size:15.5px;font-weight:700;line-height:1.5}
+.tl-item .tl-note{color:var(--ink-2);font-size:var(--fs-sec);margin-top:1px;line-height:1.6}
+.tl-item.core .time{color:var(--accent);font-weight:750}
+
+/* 警示块 */
+.alert{border-radius:var(--radius);padding:var(--s3) var(--s4);margin:var(--s4) 0 0;font-size:var(--fs-sec);line-height:1.7}
+.alert.warn{background:var(--accent-soft);border-left:4px solid var(--accent)}
+.alert.now{background:var(--primary-soft);border-left:4px solid var(--primary)}
+.alert b{color:var(--accent)}
+.alert .lbl{font-weight:800;color:var(--accent);margin-right:4px}
+
+/* ============ 景点卡 ============ */
+.spot-card{padding:14px var(--s4)}
+.spot-card .head{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--s2)}
+.spot-card .card-title{font-size:var(--fs-card)}
+.spot-card .why{font-size:var(--fs-sec);line-height:1.7;color:var(--ink-2);margin-top:var(--s2);font-weight:600}
+.spot-card .play{font-size:var(--fs-sec);line-height:1.72;color:var(--ink-2);margin-top:8px;
+  padding-top:8px;border-top:1px dashed var(--line)}
+.spot-card .play::before{content:"怎么玩 · ";color:var(--primary);font-weight:700;font-size:12px;letter-spacing:.02em}
+.group-lbl{display:flex;align-items:center;gap:8px;font-size:var(--fs-sec);font-weight:750;
+  color:var(--ink-2);margin:var(--s6) 0 var(--s3)}
+.group-lbl:first-of-type{margin-top:0}
+.group-lbl .bar{width:4px;height:15px;border-radius:2px;background:var(--surface-2)}
+
+/* ============ 餐饮 ============ */
+.meal{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s2);flex-wrap:wrap}
+.meal .when{font-size:var(--fs-cap);color:var(--ink-3);font-weight:650;letter-spacing:.03em}
+.meal .price{font-size:var(--fs-cap);color:var(--ink-2);white-space:nowrap}
+.food-list{margin-top:var(--s2);font-size:var(--fs-sec);color:var(--ink-2);line-height:1.75}
+.food-list b{color:var(--ink)}
+
+/* ============ 地址行（可点按唤起地图） ============ */
+.addr{display:block;margin-top:8px;font-size:var(--fs-cap);color:var(--ink-2);line-height:1.6;
+  text-decoration:none;-webkit-text-decoration:none}
+.addr .pin{color:var(--accent);font-weight:700}
+.addr b{color:var(--ink);font-weight:650}
+.addr:active{opacity:.6}
+
+/* ============ 更多页 list ============ */
+.list-row{display:flex;justify-content:space-between;align-items:center;gap:var(--s3);
+  padding:13px 0;border-bottom:1px solid var(--line);width:100%;text-align:left;
+  background:none;border-top:0;border-left:0;border-right:0;font:inherit;color:var(--ink);cursor:pointer}
+.list-row:last-child{border-bottom:0}
+.list-row .r-l{display:flex;align-items:center;gap:12px;min-width:0;text-align:left}
+.list-row .r-l .ico{font-size:21px;width:26px;text-align:center;flex:0 0 auto}
+.list-row .r-l b{font-size:var(--fs-body);display:block;line-height:1.4}
+.list-row .r-l span{color:var(--ink-3);font-size:var(--fs-cap);display:block;line-height:1.5;margin-top:1px}
+.list-row .chev{color:var(--ink-3);font-size:20px;flex:0 0 auto}
+.ver{text-align:center;color:var(--ink-3);font-size:var(--fs-cap);margin-top:var(--s5);line-height:1.8}
+
+/* ============ Bottom Sheet ============ */
+.sheet-mask{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;
+  transition:opacity .2s ease;z-index:90}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:91;
+  background:var(--surface);border-radius:18px 18px 0 0;
+  padding:var(--s3) var(--s4) calc(var(--s4) + env(safe-area-inset-bottom));
+  transform:translateY(105%);transition:transform .24s cubic-bezier(.3,.8,.3,1);
+  max-height:78vh;max-height:78dvh;overflow-y:auto}
+.sheet.open{transform:translateY(0)}
+body.sheet-open{overflow:hidden}
+body.sheet-open .sheet-mask{opacity:1;pointer-events:auto}
+.sheet .grab{width:36px;height:4px;border-radius:2px;background:var(--surface-2);margin:0 auto var(--s3)}
+.sheet .sheet-title{font-size:var(--fs-sec-title);font-weight:750;margin:0 0 var(--s3);padding-right:32px}
+.sheet .close-x{position:absolute;top:10px;right:var(--s2);width:44px;height:44px;border:0;background:none;
+  font-size:20px;color:var(--ink-3)}
+
+/* 预算 / 清单 表格式行（轻量两列，非宽表） */
+.kv-row{display:flex;justify-content:space-between;gap:var(--s3);align-items:baseline;
+  padding:11px 0;border-bottom:1px solid var(--line);font-size:var(--fs-body)}
+.kv-row:last-child{border-bottom:0}
+.kv-row .k{color:var(--ink)}
+.kv-row .v{color:var(--ink-2);white-space:nowrap;font-weight:600}
+.kv-row.total{font-weight:800;color:var(--red)}
+.kv-row.total .v{color:var(--red)}
+.check-item{padding:var(--s3) 0;border-bottom:1px solid var(--line);font-size:var(--fs-sec);line-height:1.7}
+.check-item:last-child{border-bottom:0}
+.check-item .when{font-weight:800;color:var(--primary);display:block;margin-bottom:2px}
+.check-item .when.red{color:var(--red)}
+.check-item .when.amber{color:var(--accent)}
+
+/* ============ 折叠 ============ */
+details.fold{margin-top:var(--s3);border-top:1px solid var(--line)}
+details.fold summary{list-style:none;padding:var(--s3) 0;font-size:15px;font-weight:600;
+  color:var(--ink-2);cursor:pointer;display:flex;justify-content:space-between;align-items:center;min-height:44px}
+details.fold summary::-webkit-details-marker{display:none}
+details.fold summary::after{content:"＋";color:var(--ink-3);font-size:16px}
+details.fold[open] summary::after{content:"－"}
+details.fold .fold-body{color:var(--ink-2);font-size:var(--fs-sec);padding-bottom:var(--s3);line-height:1.8}
+
+/* 通用行距收紧 */
+.mt1{margin-top:var(--s1)}.mt2{margin-top:var(--s2)}.mt3{margin-top:var(--s3)}.mt4{margin-top:var(--s4)}
+.mb0{margin-bottom:0}
+</style>
+</head>
+<body data-page-node-id="uA3pMXlg8fztHeF2Cpe9yR">
+
+<!-- ============ 固定顶部 Header ============ -->
+<header class="site-header" data-page-node-id="Pby2EAFRD9A4af5Q8pe47q">
+  <button class="back" aria-label="返回" onclick="history.back()" data-page-node-id="GxjuvlUC0uHi8HlBpjTy4Z">‹</button>
+  <div class="title" data-page-node-id="COacueLy54VWZplMXWSDXe">昆明 · 抚仙湖 · 建水</div>
+  <button class="more" aria-label="更多" onclick="openSheet('sheet-more')" data-page-node-id="tRFiRAPi6WBgTCORYDEgW6">⋯</button>
+</header>
+
+<!-- ============ 主内容 ============ -->
+<main data-page-node-id="CZfULKfQB188uWglSRONDp">
+
+  <!-- ========== Tab 1 · 首页 ========== -->
+  <section id="tab-home" class="active" data-page-node-id="ZxKAALyoFL41lJc2iGMh9U">
+    <div class="trip-status" data-page-node-id="Z9gWjLY3okwfC4Qhb24MTw">
+      <h1 data-page-node-id="mfA2wZKEQAzfWC6ERZeNOO">国庆昆明 · 抚仙湖 · 建水亲子游</h1>
+      <div class="meta" data-page-node-id="jWLXH1NB3hcKbkhQSDwLyC">
+        <span class="num" data-page-node-id="TaSg8pfNmN1KwelRbQHHyl">2026 国庆 6 天 5 晚</span>
+        <span class="num" data-page-node-id="SQSHyKOvuwE2RdXL4sqBxP">10/3 – 10/8</span>
+        <span data-page-node-id="5Qy5XNu3795S4W9FbdD0ka">2 大 1 小</span>
+        <span data-page-node-id="ZPuGH1GGpe3bLd8fQBMWQG">自驾</span>
+      </div>
+      <div class="note" data-page-node-id="KPHdI03JYseKzFWCzce551">上海临港出发 · 抚仙湖 3 晚 + 建水 1 晚 + 昆明 1 晚</div>
+    </div>
+
+    <div class="core-exp" data-page-node-id="RiAU6F8GX6QCyG13zEMbDG">
+      <div class="lbl" data-page-node-id="LUXiIA2o58pKV1gZ1uaWVJ">⭐ 旅途核心体验</div>
+      <h2 data-page-node-id="RScEKqwib1d9WfSVqehT2s">抚仙湖东岸（月亮湾/太阳山）→ 西岸（禄充）→ 建水古城 + 米轨小火车</h2>
+      <div class="time num" data-page-node-id="qy7fGErMnyGYMQXmBbKWlo">D1-D3 抚仙湖 · D4-D5 建水 · D5 晚-D6 昆明</div>
+    </div>
+
+    <div class="sec-block" data-page-node-id="EjZ8vXFs4u4F7XHKkEpY4Q">
+      <div class="sec-title" data-page-node-id="mVpy6TWT39ceg85jrPj6DO">6 天行程速览</div>
+      <div class="card" style="padding:8px var(--s4)" data-page-node-id="y9ehJ9xNdBfcmrHl0hQBdH">
+        <div class="ov-row" data-page-node-id="z4qE1tzgv9wMCSH97UW4Pc">
+          <div class="d" data-page-node-id="EW0oswsaTH4bJWTPlC3zG5">D1</div>
+          <div class="m" data-page-node-id="cvSqPYy4O3aIndKLHHreYB"><b data-page-node-id="Y7K9pR5tac6SF8JXyzXaqZ">上海 → 抚仙湖（去程）</b><span class="num" data-page-node-id="P4FhIrjMK4lyn6OmRVBBKT">FM9465 10:50-14:10 · 月亮湾日落 + 玩沙</span></div>
+          <span class="tag" data-page-node-id="aupPFBb1SNG5HMR0U1taLZ">万达文华</span>
+        </div>
+        <div class="ov-row" data-page-node-id="5EOOlvXH46ed144ayilN4y">
+          <div class="d" data-page-node-id="J7kjp2fecbDjxHqZCGNYqz">D2</div>
+          <div class="m" data-page-node-id="g0JE5CHt0H96c9yCJZ8gDm"><b data-page-node-id="dNzYBP0qhbtnXEZhtzP70L">太阳山观景台</b><span data-page-node-id="XApbqXIhh3Hhqu6UIN1eSY">大湾村 / S 湾日落</span></div>
+          <span class="tag" data-page-node-id="d7uNGIGp6puXHjHh2Qw1rN">万达文华</span>
+        </div>
+        <div class="ov-row" data-page-node-id="5hQ5pKBSzAmxXHtO4YrP9r">
+          <div class="d" data-page-node-id="3or0l1QZTuikG587oig7vt">D3</div>
+          <div class="m" data-page-node-id="AQw8FFmaZMuht7zPPEVanq"><b data-page-node-id="Whoipt1bDpKhQCakyfC70C">禄充（必保）</b><span data-page-node-id="xBebMPCciti0pFHzgcvs94">明星鱼洞 + 孤山（弹性）</span></div>
+          <span class="tag" data-page-node-id="8c7QsF9kzGIyCvv4fykoGh">万达文华</span>
+        </div>
+        <div class="ov-row" data-page-node-id="IFlPwfBjjBYSaOwxsALsDG">
+          <div class="d" data-page-node-id="2LkTa9AwGs9FG9g6yAPPG7">D4</div>
+          <div class="m" data-page-node-id="FmqphA9vkFS4dvO7UsqxPg"><b data-page-node-id="TAsdM5sT9gkkrwiuuZdlCg">海豚之家 + 樱花谷</b><span data-page-node-id="kWMXvnG4j0U6DrbzYO79xp">14:30 转场建水 · 傍晚古城遛一遛</span></div>
+          <span class="tag" data-page-node-id="NxqgggIQIo1Q1UOWuqRLlD">建水临安酒店</span>
+        </div>
+        <div class="ov-row" data-page-node-id="n9ctiffjxSZ6Q6SYG8ztcv">
+          <div class="d" data-page-node-id="RnhjJ75M1OUmyDkbG82IZj">D5</div>
+          <div class="m" data-page-node-id="eYC9cf4WDBwJJTUUoyxvCw"><b data-page-node-id="m7nMxlAi4xtNsQcQFGm6WP">米轨小火车 101 车次</b><span data-page-node-id="NV2407RhmCiEgus60QnXOw">09:00 临安始发 · 13:40 返回临安 · 15:00 离开回昆明</span></div>
+          <span class="tag" data-page-node-id="B0z0Ba3Mlfwm5mhTmi6ENB">温德姆</span>
+        </div>
+        <div class="ov-row" data-page-node-id="kcRJxf8N4GWb1sMaVzDCbM">
+          <div class="d" data-page-node-id="5uNCdmj4yKetNzXYqSpaSl">D6</div>
+          <div class="m" data-page-node-id="8ceEVeinHguiAjBOFvAGYD"><b data-page-node-id="tMb4QVOuTD4txKU2NkUYSZ">回程</b><span class="num" data-page-node-id="jenUE6DhVP6bLDrazixlN0">MU9713 11:50-17:05（经停井冈山）</span></div>
+          <span class="tag" data-page-node-id="XrFtoGCPn9sUNKvKYA2ib1">—</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-page-node-id="0jCtuNjAQYFnPKnxqblUcS">
+      <div class="card-title" data-page-node-id="MyPlktrRcD8daoEjM481Jh">🏨 4 晚住宿一览</div>
+      <div class="ov-row" style="padding:10px 0" data-page-node-id="odF3jwkClxFM4YkeWggwFL">
+        <div class="d" data-page-node-id="2HdX3rGMSo8kLWl608mPh0">10/3-6</div>
+        <div class="m" data-page-node-id="8JnmYGP4gKD5r3OPw00YBQ"><b data-page-node-id="1wBKWf0Iv5ftLrclG5UFAg">抚仙湖 · 万达文华</b><span data-page-node-id="8u69xE34jE6tNdiHDWMQKA">3 晚 · 已确认下单 ✅</span><a class="addr" style="margin-top:3px" href="https://maps.apple.com/?q=抚仙湖万达文华酒店"><span class="pin" style="display:inline">📍</span>澄江市右所镇环湖北路8号 · 月亮湾步行可达</a></div>
+      </div>
+      <div class="ov-row" style="padding:10px 0" data-page-node-id="GrOgla7xL9FX2E0MWydoBQ">
+        <div class="d" data-page-node-id="SlsNphgJbqtfNe59Z61amu">10/6-7</div>
+        <div class="m" data-page-node-id="7Mqp8B6XlkCziJx8HDUqz7"><b data-page-node-id="MpSbgjlfgwsI4fV6EmYXPj">建水 · 临安酒店</b><span data-page-node-id="sfAVhKx8Fz4yZ3Qq7N0hyG">1 晚 · 已订 ✅</span><a class="addr" style="margin-top:3px" href="https://maps.apple.com/?q=建水临安酒店"><span class="pin" style="display:inline">📍</span>建水县临安镇永祯路2号 · 近古城（步行可逛文庙/朝阳楼）</a></div>
+      </div>
+      <div class="ov-row" style="padding:10px 0" data-page-node-id="WfPA9D5SfScZ5slbH5ErG8">
+        <div class="d" data-page-node-id="BEgA6Nww3Yj11oOfgj8vr1">10/7-8</div>
+        <div class="m" data-page-node-id="fr3DRPszPX6F2ZyerlnYmV"><b data-page-node-id="kQgJLqsXBu1jTXy20zzw11">昆明 · 蔚景温德姆</b><span data-page-node-id="vZ3LS36lbxqDNEaejJcABJ">1 晚 · 已订 ✅</span><a class="addr" style="margin-top:3px" href="https://maps.apple.com/?q=昆明滇中蔚景温德姆酒店"><span class="pin" style="display:inline">📍</span>官渡区滇兴街199号空港商务广场4号楼 · 距机场约7分钟</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Tab 2 · 行程（Day 切换 + 时间轴） ========== -->
+  <section id="tab-plan" data-page-node-id="UTiJA5s6oVXjsqmTtHjIpt">
+    <div class="page-title" data-page-node-id="avkeqYE4Oer3wroEpyP7zI">每日行程</div>
+    <div class="day-tabs" id="dayTabs" role="tablist" aria-label="切换日期" data-page-node-id="XWrWP4LtZtrTpongX08XTf">
+      <button class="active" data-page-node-id="iyYqEZ1xiH1JFFwO3Wg3SZ">Day 1<span class="mini" data-page-node-id="GpJTU8FOLI81SwPieKwin5">10/3 抵达</span></button>
+      <button data-page-node-id="BDpSiTuE47SysO3gPOKBkp">Day 2<span class="mini" data-page-node-id="bkQLf7NGPm7Qys8AhNtItm">10/4 东岸</span></button>
+      <button data-page-node-id="HpBlL9KByCEjReVdwe3u7f">Day 3<span class="mini" data-page-node-id="iYCcNkWJkwZddlRtvvT61U">10/5 西岸</span></button>
+      <button data-page-node-id="TLCFIXSVo7Rjq31aozEnO2">Day 4<span class="mini" data-page-node-id="iPJps2GSpED24dMSeyTHvO">10/6 转建水</span></button>
+      <button data-page-node-id="a2GFyqlqvp8oAoR2BV8v1L">Day 5<span class="mini" data-page-node-id="MWSCt21zElH7nffkqpGLCY">10/7 小火车</span></button>
+      <button data-page-node-id="IamAPWeZ1GSfCAExCGj7GN">Day 6<span class="mini" data-page-node-id="nCs9Mmyl3mmtyzlPf2eqq3">10/8 返程</span></button>
+    </div>
+
+    <!-- Day 1 -->
+    <div class="day-panel" data-page-node-id="nMxhCiFFKZsMQDlQoApaUG">
+      <div class="sec-block" data-page-node-id="iYjCPlimLDtescEmdyIxAy">
+        <div class="sec-title" data-page-node-id="QkEcU8nBNn5rVDFiR1IJuy">Day 1 · 10/3 · 上海 → 抚仙湖</div>
+        <div class="timeline" data-page-node-id="MSwiNkc42P06ZckJkR9UW9">
+          <div class="tl-item core" data-page-node-id="DBRvQuQu51AGzE8mUw1z1l">
+            <span class="dot" data-page-node-id="TovbIFTAtdRZCBZAkdn3jP"></span>
+            <div class="time num" data-page-node-id="MJoabAmB6w7PKoisFETBbK">10:50 – 14:10</div>
+            <div class="tl-title" data-page-node-id="A64KUUKWkNnxaKSh6mjYL7">✈️ FM9465 浦东 → 长水</div>
+          </div>
+          <div class="tl-item" data-page-node-id="au0PGBXb2goH6DERDZthru">
+            <span class="dot" data-page-node-id="yixZt5ueEwo3xGVA4YKiv6"></span>
+            <div class="time num" data-page-node-id="YPDFrcWY1gblX11uHNRUHF">14:10 – 16:30</div>
+            <div class="tl-title" data-page-node-id="h0LaFwDm5I3FXCqKE5ZSad">取行李、租车 → 万达文华，入住</div>
+            <div class="tl-note" data-page-node-id="3A4wncxQrJJLl7Yfi6hPQ1">按 1.5h+ 预留</div>
+          </div>
+          <div class="tl-item core" data-page-node-id="7th8R8h5lCiLM9KcBWMlWE">
+            <span class="dot" data-page-node-id="6bJvqZBPy1rBoKNM6J8wzR"></span>
+            <div class="time num" data-page-node-id="1Oxaay8fd7M4keLCU1B15H">18:00 – 19:15</div>
+            <div class="tl-title" data-page-node-id="0Gx2UJHH97ajxi0nEX9evR">🌅 月亮湾日落 + 玩沙</div>
+            <div class="tl-note" data-page-node-id="Ocv6bH2cNrub8FyipK07Nm">细白沙滩，湖畔日落 · 酒店步行 300m</div>
+          </div>
+          <div class="tl-item" data-page-node-id="hLnLl5D5GLD9QrlU6I2OK2">
+            <span class="dot" data-page-node-id="PqEF3GNOCsg22AMWY6CeKI"></span>
+            <div class="time" data-page-node-id="zCF4AhZvsQpHk7EgjA1h2F">晚餐</div>
+            <div class="tl-title" data-page-node-id="yTUTdOF75L1TJzjXb9yccQ">万达文华酒店内</div>
+          </div>
+        </div>
+      </div>
+      <div class="alert now" data-page-node-id="CmIEbfdZ6vk5PBN69DDuXQ"><span class="lbl" data-page-node-id="wUnktUUfklvZvrpRUur9Xi">原则</span>落地后不加任何项目，月亮湾日落就是全部。</div>
+    </div>
+
+    <!-- Day 2 -->
+    <div class="day-panel" style="display:none" data-page-node-id="yX1op9XPOKUCczit2H889n">
+      <div class="sec-block" data-page-node-id="rLcTLnxxYxwDjsAiO3sCA5">
+        <div class="sec-title" data-page-node-id="pUHdKUKIjQ5kq00V4wU5ND">Day 2 · 10/4 · 太阳山 + 大湾村 / S 湾</div>
+        <div class="timeline" data-page-node-id="TJkFS1giLFvErhZIxOqrqP">
+          <div class="tl-item core" data-page-node-id="VM7KWqzldvQ7YPQJjETbId">
+            <span class="dot" data-page-node-id="5BQRR93jxE3TqKuxGiA1Ij"></span>
+            <div class="time num" data-page-node-id="nmoRPrCeJ5l8sL59fPIRGf">09:15 – 11:15</div>
+            <div class="tl-title" data-page-node-id="dXECGakftw1BjVEAI5myxm">⛰️ 太阳山观景台</div>
+            <div class="tl-note" data-page-node-id="Ai7b2mVuKSeUUDgAINcYpk">俯瞰抚仙湖全景 · 不做大范围徒步</div>
+          </div>
+          <div class="tl-item" data-page-node-id="jp903SGYHFgvHymDiXOXwS">
+            <span class="dot" data-page-node-id="HfVzmcrNQxktPCtN9M5EFX"></span>
+            <div class="time num" data-page-node-id="4V26fY5ZjzMwBPu9eZ6WIS">11:30 – 12:30</div>
+            <div class="tl-title" data-page-node-id="8FMYijaJf4S0N4BWAGcI7X">午餐 · 龙阳鱼庄</div>
+            <div class="tl-note" data-page-node-id="U3HR8aAw8vL8jpsnXPhwrS">石锅/铜锅鱼 · 备 渔米香（同片区就近换）</div>
+          </div>
+          <div class="tl-item" data-page-node-id="v2etO8LMPChHoYeLQLi3mu">
+            <span class="dot" data-page-node-id="lwm7KZV8JWEal6WdB9kT7p"></span>
+            <div class="time num" data-page-node-id="rrR1r3IxD6B2a7OmeGbVz3">12:45 – 14:30</div>
+            <div class="tl-title" data-page-node-id="Xe3SwE42dgTLV17478GpLJ">回酒店午休</div>
+          </div>
+          <div class="tl-item" data-page-node-id="PD4UnNgNLUEcLxQ1eVO7LH">
+            <span class="dot" data-page-node-id="g7bXZeDorFGeRxCAvbQEaC"></span>
+            <div class="time num" data-page-node-id="IR2ULBaZP9J0EP6oHfGksH">15:00 – 16:15</div>
+            <div class="tl-title" data-page-node-id="kz1xw4OAspq7f3x1MFylbx">泳池 / 温泉 / 房间休息</div>
+          </div>
+          <div class="tl-item core" data-page-node-id="j62WT8Ce88F3W5AYNZecRI">
+            <span class="dot" data-page-node-id="EEyckodDKRJvDNiHTETvBF"></span>
+            <div class="time num" data-page-node-id="i5IXdVByJzACNm8n0LVy20">16:30 – 19:00</div>
+            <div class="tl-title" data-page-node-id="p2B3VBcNK89VHPBR1qDfEN">🌅 大湾村 / S 湾 · 散步看日落</div>
+          </div>
+          <div class="tl-item" data-page-node-id="wrkQ4QTIrwSqHIiPOfY7Gr">
+            <span class="dot" data-page-node-id="iFfT5GBwtaFvEiL69bQU7G"></span>
+            <div class="time" data-page-node-id="qbGA9GEyIDxzlWIT4Fjgkp">晚餐</div>
+            <div class="tl-title" data-page-node-id="c27GSueXNCEAa4HXkLhxIE">归心园 · 湖景石锅鱼</div>
+            <div class="tl-note" data-page-node-id="VpbahKswg8HX67NiEBX8E8">草帽石锅鱼 · 排队或娃累 → 回酒店</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 3 -->
+    <div class="day-panel" style="display:none" data-page-node-id="x9vEWJeCgKOJmr51JdCdo6">
+      <div class="sec-block" data-page-node-id="f2DxTLnT9p6OBNnZ7xWaf8">
+        <div class="sec-title" data-page-node-id="8WqeWALi4aPhEBaM6GDxkt">Day 3 · 10/5 · 禄充 + 明星鱼洞 + 孤山弹性</div>
+        <div class="timeline" data-page-node-id="VU6n5ubIRxviyOYlfEn0bP">
+          <div class="tl-item core" data-page-node-id="pH6dwzYtiOcZiY42Gb0vCy">
+            <span class="dot" data-page-node-id="XElT0b2ifZivb25ChispJN"></span>
+            <div class="time num" data-page-node-id="yNU9bXxvYD9pYk9tUdlS2j">09:00 – 11:15</div>
+            <div class="tl-title" data-page-node-id="VlfYb36Rp3l767NJDfdvzm">⛰️ 禄充（必保项）</div>
+            <div class="tl-note" data-page-node-id="aP1VWmuP5xSlLw4Gnshpk4">渔村湖湾，笔架山倒影</div>
+          </div>
+          <div class="tl-item" data-page-node-id="SucHyvXYfWSkHpMbQIEsgp">
+            <span class="dot" data-page-node-id="UM9BDPb4Kazda6fORlthlO"></span>
+            <div class="time num" data-page-node-id="molQQZG051aPZ6B5NY3Km5">11:30 – 12:30</div>
+            <div class="tl-title" data-page-node-id="EeOCGr1PGi2LkNkc62jSBU">午餐 · 明星鱼洞风味食馆</div>
+            <div class="tl-note" data-page-node-id="Vs6Bq9ABuQKVLQtPF354XQ">铜锅鱼、银鱼煎蛋、洋芋饭</div>
+          </div>
+          <div class="tl-item" data-page-node-id="DF4bOmfqoC1X7jweuiY0ah">
+            <span class="dot" data-page-node-id="pFFD1OQid79huCHlAYGNtE"></span>
+            <div class="time num" data-page-node-id="sCcF8jCJTyjL9TLHeaFAtH">12:40 – 13:40</div>
+            <div class="tl-title" data-page-node-id="cYai2UaVwYEnJcBuQO1Pkw">明星鱼洞 · 湖边短走</div>
+          </div>
+          <div class="tl-item" data-page-node-id="frCA2pbfChlzDwSixhzy2a">
+            <span class="dot" data-page-node-id="ImoI9dxJE32pmRY6fiNHVf"></span>
+            <div class="time num" data-page-node-id="621PcmgHUleE9RdHLihmSq">14:00 – 15:30</div>
+            <div class="tl-title" data-page-node-id="K5mWEHObW1pvnQMdARODqk">回酒店午休</div>
+          </div>
+          <div class="tl-item" data-page-node-id="Dx4zFFHfjRAkcNgYJzGXTj">
+            <span class="dot" data-page-node-id="lQF83GjcIBJ9DY8er292fu"></span>
+            <div class="time num" data-page-node-id="IdjaC58NlDEolUwGu0U4Mb">15:30 – 17:30</div>
+            <div class="tl-title" data-page-node-id="YCTgGOqa0IxHBipHu3kFB0">🚤 孤山（弹性）</div>
+            <div class="tl-note" data-page-node-id="ugdIm7Yr6FVvEeOOrvym8l">湖中孤岛可登岛 · 疲劳/风浪大 → 泳池温泉</div>
+          </div>
+          <div class="tl-item" data-page-node-id="fs4VpI54JN6MjbQLFeEPu1">
+            <span class="dot" data-page-node-id="H0CTmeFFHdENs3pQ7tVQ48"></span>
+            <div class="time" data-page-node-id="MUzaBNzh7H8Dpu7ALBqdb6">晚餐</div>
+            <div class="tl-title" data-page-node-id="ml9Kj6NYqJnE5vOHvqMt1L">希尔顿 · 御玺中餐厅</div>
+            <div class="tl-note" data-page-node-id="JqnfMQweEbelmahBlO250b">全程唯一品质云南菜 · 铜锅火腿洋芋饭、脆皮小刀鸭</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 4 -->
+    <div class="day-panel" style="display:none" data-page-node-id="iYjIxrYGcEAehL7skOTMt5">
+      <div class="sec-block" data-page-node-id="UlTrYLSElyOEKyb4f0rGm9">
+        <div class="sec-title" data-page-node-id="dKUOlEJEyjytbVPGckLOX0">Day 4 · 10/6 · 海豚之家 + 樱花谷 → 建水</div>
+        <div class="timeline" data-page-node-id="4WdBpVcbNEvoo6RI12Wzfo">
+          <div class="tl-item core" data-page-node-id="IHiD08QXlCHEBjKZSS1rng">
+            <span class="dot" data-page-node-id="bFDHapsfwxfgsM2KV8rdoI"></span>
+            <div class="time num" data-page-node-id="Vhi0G4zP6D8y18uz63ig0j">09:30 – 12:00</div>
+            <div class="tl-title" data-page-node-id="rlK7gAUBhiJcoae6bUTKG4">🐬 海豚之家（优先上午场）</div>
+            <div class="tl-note" data-page-node-id="QpEU4qqPUekmoXmhiv43Rv">海豚表演 + 科普馆 · 室内</div>
+          </div>
+          <div class="tl-item" data-page-node-id="amnpAW8C69xjFELhyYHJE6">
+            <span class="dot" data-page-node-id="Hi9DOmzj5WgWF7P1pEiuWz"></span>
+            <div class="time num" data-page-node-id="C3rJ5MmMrkC0flc04VnHKm">12:00 – 12:50</div>
+            <div class="tl-title" data-page-node-id="hsAmkeWMSA8AXAmYh1ciVk">午餐 · 澄里云南过桥米线（快进快出）</div>
+          </div>
+          <div class="tl-item" data-page-node-id="du0pK8vhrABHidUbBCABfD">
+            <span class="dot" data-page-node-id="BRjrXCck9erOSdwhGXWO6p"></span>
+            <div class="time num" data-page-node-id="ILOEn0xYt0XYKFlVqFlFwZ">13:00 – 14:00</div>
+            <div class="tl-title" data-page-node-id="4qwJBwOx0F5PkzWyPR4Z7S">🌸 樱花谷 · 玩沙秋千</div>
+          </div>
+          <div class="tl-item" data-page-node-id="3RlXjboOjqgeZBsnzCoAMr">
+            <span class="dot" data-page-node-id="9uP8EPu6lSXdDUpZYs9VtM"></span>
+            <div class="time num" data-page-node-id="uqHUsswUENJS4a3VORHXA3">14:00 – 14:30</div>
+            <div class="tl-title" data-page-node-id="WSiCMtH4c8Nw4a1iFkKRW6">回酒店取行李退房</div>
+          </div>
+          <div class="tl-item" data-page-node-id="6u04ZqWlmOgbmstPgiI858">
+            <span class="dot" data-page-node-id="IzGvRYf8BLIr2TdOmeovM7"></span>
+            <div class="time num" data-page-node-id="ajC33OWFNMxuLyz55Ay0Ih">14:30 – 16:30</div>
+            <div class="tl-title" data-page-node-id="ThimzgxOCDFjUXI0s8QxVD">🚗 转场建水（约 2h）</div>
+            <div class="tl-note" data-page-node-id="srrCLiveE4W0EFQ5dyMbZc">卡午睡窗口</div>
+          </div>
+          <div class="tl-item core" data-page-node-id="jlXA98CK1fPgn6dPMxOSRt">
+            <span class="dot" data-page-node-id="J373TbxPS3EALyoczlpTuZ"></span>
+            <div class="time num" data-page-node-id="h5Xl0alPMSCsjGr8H944GV">17:15 – 18:45</div>
+            <div class="tl-title" data-page-node-id="egSsnL24rRXLO2JqlCGRSj">🏮 古城轻逛：朝阳楼 + 街巷</div>
+            <div class="tl-note" data-page-node-id="T4KFzF5jChgFbGjsFvRXVe">不进正式景点 · 车停酒店步行/打车进古城</div>
+          </div>
+          <div class="tl-item" data-page-node-id="JQNfxh4MClZHfgnPqLUCek">
+            <span class="dot" data-page-node-id="A2y2UnOzS1LlUFEYdgQ30u"></span>
+            <div class="time num" data-page-node-id="LJO0ENhkYPA0OD3BV0brqM">18:45 – 19:45</div>
+            <div class="tl-title" data-page-node-id="0sDBtmSxf9jZgYpDuyDHG7">晚餐 · 香满楼（临安路店）</div>
+            <div class="tl-note" data-page-node-id="zkWAMch4O0PF5xq1o72Yne">汽锅鸡、草芽炒肉片、老奶洋芋、烤豆腐</div>
+          </div>
+          <div class="tl-item" data-page-node-id="WBB6cF8KHERqadrhCdAk2x">
+            <span class="dot" data-page-node-id="6aAjm8OJKJn8pSH7Mwi2EQ"></span>
+            <div class="time num" data-page-node-id="DWF7yQRB06vcE3GjHwNxJq">19:45 后</div>
+            <div class="tl-title" data-page-node-id="g4FFVbfl5Ewkhggn0EUdXc">紫陶街短逛</div>
+            <div class="tl-note" data-page-node-id="zGt0nTA3TiDRFaVcd1JDD3">累了直接回酒店</div>
+          </div>
+        </div>
+      </div>
+      <div class="alert warn" data-page-node-id="BGCGbt5jWmHSm1QJZ1W7yT"><b data-page-node-id="ldddzypNXHBe9nQpVmAobs">⚠ 提醒：</b>10/6 为周二，无朝阳楼灯光秀（仅周五六 20:30）。</div>
+    </div>
+
+    <!-- Day 5 -->
+    <div class="day-panel" style="display:none" data-page-node-id="sBtE4vXnCN5WU1N3SNypon">
+      <div class="sec-block" data-page-node-id="sdQ7SASdSCceq2RrR6UI5w">
+        <div class="sec-title" data-page-node-id="kiKJoB3tOe940vgPq5bh6c">Day 5 · 10/7 · 米轨小火车 → 15:00 离开建水</div>
+        <div class="timeline" data-page-node-id="rI71s6TJiJPT9hfN8dC3Eo">
+          <div class="tl-item" data-page-node-id="oyzVTnWcrrSsfYaVlHcyXW">
+            <span class="dot" data-page-node-id="qn2LOyMqqet2a6HcjcwEWq"></span>
+            <div class="time num" data-page-node-id="B5jMhE2vhB6AGyfWFT2Um6">07:40 – 08:10</div>
+            <div class="tl-title" data-page-node-id="jsIEurMRZNmuKIaOdfTw9Q">退房装车</div>
+          </div>
+          <div class="tl-item" data-page-node-id="Z7JjOfvvsVBEm31Pd36bV0">
+            <span class="dot" data-page-node-id="D1XdHZLpDNyU1VgfbhfkNk"></span>
+            <div class="time num" data-page-node-id="gEgfuyv52LOfFHwoTEj0kC">08:30 前</div>
+            <div class="tl-title" data-page-node-id="y9xnYAfFczKteuxQlGqEGz">到临安站大厅换票</div>
+          </div>
+          <div class="tl-item core" data-page-node-id="K9FypTlEpSjUjWTwSgUkPX">
+            <span class="dot" data-page-node-id="7Mi5ydpWTtNc6K1RsoiPXI"></span>
+            <div class="time num" data-page-node-id="lvQWUDRux7CSO4rYhXtEJh">09:00 – 13:40</div>
+            <div class="tl-title" data-page-node-id="0vmXZxzKlt8wPxKA3wPVYb">🚂 米轨小火车（核心体验）· 101 车次</div>
+            <div class="tl-note" data-page-node-id="sIeUmWVSLiqCGIi3HHIn4D">101 车次：临安 9:00 始发 → 双龙桥 9:20–9:50 → 乡会桥 10:00–10:30 → 团山 10:40<br data-page-node-id="FPjNNESzq9cieer0C1WMnF">团山逛到 13:00 · 102 车次 13:00 返程 → 13:40 到临安 · 去程坐右、回程坐左</div>
+          </div>
+          <div class="tl-item" data-page-node-id="TG77loOTGIPbycaveJgTHV">
+            <span class="dot" data-page-node-id="WwWsD4F8drY2rci7lIZRDX"></span>
+            <div class="time num" data-page-node-id="YNwWq59v64vwJhqmqoRpJm">13:45 – 14:30</div>
+            <div class="tl-title" data-page-node-id="6xaQMcELhVHy0ufF1XBRBB">午餐 · 宝兴楼（广慈路店）</div>
+            <div class="tl-note" data-page-node-id="HCaNjrO5YwglZjTDIcuQJ3">汽锅鸡、过桥米线 · 赶时间 → 味道临安米线</div>
+          </div>
+          <div class="tl-item" data-page-node-id="lP3YXLt6fknUA5o3Uil1Sn">
+            <span class="dot" data-page-node-id="qehxnTbU4rpnlbZTZOw5SL"></span>
+            <div class="time num" data-page-node-id="RFSblVVfuCTmAfp8DjxGGQ">14:30 – 15:00</div>
+            <div class="tl-title" data-page-node-id="DG53jHpu7iO8KhlTLCF7yt">古城 / 买紫陶（选一个小任务）</div>
+          </div>
+          <div class="tl-item core" data-page-node-id="9IJMGtKxrPP2pQy6jscvZh">
+            <span class="dot" data-page-node-id="0AzY3lppMgvL0wXEryH4c9"></span>
+            <div class="time num" data-page-node-id="CVJCoxMYnlc0e83inxPCEq">15:00 固定离开</div>
+            <div class="tl-title" data-page-node-id="RlZSmOP05qM7uM9QmIAghH">🚗 → 昆明（约 2h）</div>
+          </div>
+          <div class="tl-item" data-page-node-id="egg8GI1YF1KER5LynA1cOJ">
+            <span class="dot" data-page-node-id="i1b1d0DioAGvce68rZEcaI"></span>
+            <div class="time num" data-page-node-id="DEkkDwGWJWZU6fYrc2cla8">17:00 – 17:30</div>
+            <div class="tl-title" data-page-node-id="VpRXFKWiGG1d8GNhymIeeY">入住温德姆</div>
+          </div>
+          <div class="tl-item" data-page-node-id="L29SwYkEfeJWg8sBq8rOHj">
+            <span class="dot" data-page-node-id="bA8mW06IOcwYDJ4BQNeEif"></span>
+            <div class="time" data-page-node-id="9W9EquKahuSGYdQa8OWLC7">晚餐</div>
+            <div class="tl-title" data-page-node-id="97bfR1OYnGbW0O1rRnLzLX">老滇部落 · 长水旗舰店</div>
+            <div class="tl-note" data-page-node-id="SnNPDBPCEJGsAFtjbavjZA">认准滇兴街 1 号 · 同街备选 彩云轩</div>
+          </div>
+        </div>
+      </div>
+      <div class="alert warn" data-page-node-id="ZAc0g6yxMSIDIHJieIvVfl"><span class="lbl" data-page-node-id="BExBHtmNcHFZGDgx6d5Gi7">⚠ 抢不到票 / 停运 Plan B</span>09:00-10:00 朱家花园（¥35，1.2m 以下免票）→ 朝阳楼或文庙择一 → 11:20 午餐 → 回酒店午休 → 仍 15:00 离开。</div>
+    </div>
+
+    <!-- Day 6 -->
+    <div class="day-panel" style="display:none" data-page-node-id="UO5GYoDx4O8SAGdsC6neAo">
+      <div class="sec-block" data-page-node-id="wWknA5zIb3SeC0hF8KY9L6">
+        <div class="sec-title" data-page-node-id="dZS16IS8CgfRFy9mZLsJmS">Day 6 · 10/8 · 昆明 → 上海（纯返程日）</div>
+        <div class="timeline" data-page-node-id="dZqMi2VWxaBSNnJu8XBt5H">
+          <div class="tl-item" data-page-node-id="Ras6B4RQrYgpGQj4wVdVQy">
+            <span class="dot" data-page-node-id="CPKBpSYgt4KIKvAmrk8qY7"></span>
+            <div class="time num" data-page-node-id="X9n294Mo4JCtd9W6lgGCsV">08:00</div>
+            <div class="tl-title" data-page-node-id="tCFGPGlkvuA5sWoc6YDQ4s">退房赴长水（约 20-30min）</div>
+          </div>
+          <div class="tl-item" data-page-node-id="G4dBq36bea8rBfiT6CG9o2">
+            <span class="dot" data-page-node-id="KxAbaExj6zRekurMW4irtI"></span>
+            <div class="time num" data-page-node-id="cG8mLKFIBiquk9bVIJDwA2">09:30 前</div>
+            <div class="tl-title" data-page-node-id="aseULAL3QWEYg4b42ROQDy">到航站楼</div>
+            <div class="tl-note" data-page-node-id="N84c26FgikpM2LyssCirnv">返程高峰，安检按 1.5h 预留</div>
+          </div>
+          <div class="tl-item core" data-page-node-id="aN6AAshnHxi9EGH2vGFIVP">
+            <span class="dot" data-page-node-id="Mhfx9F6cRk2FWeQfLWJX3O"></span>
+            <div class="time num" data-page-node-id="jtexfxlowFaLMEq2JD1ETP">11:50 – 17:05</div>
+            <div class="tl-title" data-page-node-id="ODSqo78XRgP15lK7EQeWgF">✈️ MU9713 · 经停井冈山</div>
+          </div>
+          <div class="tl-item" data-page-node-id="GK61hgqwKVk3ofhg9u7ZF8">
+            <span class="dot" data-page-node-id="Ukf3QShnK6JnpxwGrqQEnQ"></span>
+            <div class="time num" data-page-node-id="069FfJQb024mEJx2NEpxDE">17:05</div>
+            <div class="tl-title" data-page-node-id="Rj4FFo5LFZWqIcqQMu39Mi">落地取行李 → 临港</div>
+            <div class="tl-note" data-page-node-id="Ef7o7wguMdJWXUlnHz17PQ">1-1.5h · 到家约 19:00-19:30</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Tab 3 · 景点 ========== -->
+  <section id="tab-spots">
+    <div class="page-title">景点总览</div>
+
+    <div class="group-lbl"><span class="bar" style="background:var(--accent)"></span>⭐ 核心体验（6）</div>
+
+    <div class="card spot-card">
+      <div class="head">
+        <div class="card-title">月亮湾湿地公园</div>
+        <div class="meta-line" style="margin-top:0;flex:0 0 auto"><span class="tag core">主</span><span class="tag">D1</span></div>
+      </div>
+      <div class="meta-line"><span class="tag">🕐 傍晚</span><span class="tag">⏱ ≤1h</span><span class="tag">🚗 步行 300m</span></div>
+      <div class="why">细白沙滩，湖畔日落</div>
+      <div class="play">从酒店溜达就到，傍晚退凉后挖沙、踩水边看湖面落日。孩子放电、大人吹风，回酒店直接晚餐。</div>
+      <a class="addr" href="https://maps.apple.com/?q=澄江月亮湾湿地公园"><span class="pin">📍</span> 澄江市环湖北路8号 · 悦椿度假酒店旁（万达文华正对面 · 门票30元可抵园内消费）</a>
+    </div>
+
+    <div class="card spot-card">
+      <div class="head">
+        <div class="card-title">太阳山观景台</div>
+        <div class="meta-line" style="margin-top:0;flex:0 0 auto"><span class="tag core">主</span><span class="tag">D2</span></div>
+      </div>
+      <div class="meta-line"><span class="tag">🕐 上午</span><span class="tag">⏱ 1.5-2h</span><span class="tag">🚗 15-20min</span></div>
+      <div class="why">俯瞰抚仙湖全景</div>
+      <div class="play">车到附近走一小段即达观景台，上午顺光湖面开阔。全家合影好看，不做大范围徒步，轻松不累。</div>
+      <a class="addr" href="https://maps.apple.com/?q=太阳山小镇广场"><span class="pin">📍</span> 澄江市右所镇太阳山度假小镇内 · 毗邻环湖东路（导航"太阳山小镇广场"）</a>
+    </div>
+
+    <div class="card spot-card">
+      <div class="head">
+        <div class="card-title">禄充</div>
+        <div class="meta-line" style="margin-top:0;flex:0 0 auto"><span class="tag core">主</span><span class="tag">D3</span></div>
+      </div>
+      <div class="meta-line"><span class="tag">🕐 上午</span><span class="tag">⏱ 2-2.5h</span><span class="tag">🚗 约 45min</span></div>
+      <div class="why">渔村湖湾，笔架山倒影</div>
+      <div class="play">抚仙湖西岸老牌渔村，笔架山倒影配古榕沙滩很出片。沿湖走走、树下歇凉，午餐湖边餐馆解决。</div>
+      <a class="addr" href="https://maps.apple.com/?q=禄充风景区"><span class="pin">📍</span> 澄江市龙街街道禄充村 · 抚仙湖西岸澄川线旁（门票15元 · 当天可重复进出）</a>
+    </div>
+
+    <div class="card spot-card">
+      <div class="head">
+        <div class="card-title">海豚之家</div>
+        <div class="meta-line" style="margin-top:0;flex:0 0 auto"><span class="tag core">主</span><span class="tag">D4</span></div>
+      </div>
+      <div class="meta-line"><span class="tag">🕐 上午</span><span class="tag">⏱ 2-2.5h</span><span class="tag">🚗 5-10min</span></div>
+      <div class="why">海豚表演 + 科普馆 · 室内</div>
+      <div class="play">室内场馆不晒不热，看海豚表演与科普馆认鱼。挑上午场顺路，雨天或暴晒都不受影响，孩子最爱一站。</div>
+      <a class="addr" href="https://maps.apple.com/?q=抚仙湖海豚之家"><span class="pin">📍</span> 澄江市环湖北路9号 · 寒武纪小镇欢乐大世界内（海豚湾酒店西侧 · 周一不闭馆）</a>
+    </div>
+
+    <div class="card spot-card">
+      <div class="head">
+        <div class="card-title">建水米轨小火车</div>
+        <div class="meta-line" style="margin-top:0;flex:0 0 auto"><span class="tag core">主</span><span class="tag">D5</span></div>
+      </div>
+      <div class="meta-line"><span class="tag">🕐 上午</span><span class="tag">⏱ 09:00–13:40（101/102 往返）</span><span class="tag">🚗 约 10min（临安站）</span></div>
+      <div class="why">百年米轨，慢车穿越双龙桥田园</div>
+      <div class="play">坐 101 车次（09:00 临安始发）：双龙桥 9:20–9:50 下车拍照、乡会桥 10:00–10:30 看老站房、团山 10:40–13:00 逛古村，返程 102 车次 13:00 团山发、13:40 到临安。往返票软座 150 / 硬座 120 / 站票 100 元每人。去程坐右、回程坐左，田园一路展开。</div>
+      <a class="addr" href="https://maps.apple.com/?q=建水临安站"><span class="pin">📍</span> 建水县临安镇迎晖路 · 迎晖路与东林路交叉口（米轨小火车主题公园内）</a>
+    </div>
+
+    <div class="card spot-card">
+      <div class="head">
+        <div class="card-title">建水古城 · 朝阳楼</div>
+        <div class="meta-line" style="margin-top:0;flex:0 0 auto"><span class="tag core">主</span><span class="tag">D4 晚</span></div>
+      </div>
+      <div class="meta-line"><span class="tag">🕐 傍晚</span><span class="tag">⏱ 1-1.5h</span><span class="tag">🚗 约 10min</span></div>
+      <div class="why">滇南古城，城楼街巷烟火</div>
+      <div class="play">傍晚进城顺路踩点：看朝阳楼与中轴线街巷，找烤豆腐当晚餐前零食。不进正式景点，周二无灯光秀。</div>
+      <a class="addr" href="https://maps.apple.com/?q=建水朝阳楼"><span class="pin">📍</span> 建水县临安镇太史巷14号 · 临安路东端（古城地标，步行即可达）</a>
+    </div>
+
+    <div class="group-lbl"><span class="bar" style="background:var(--green)"></span>🌿 补充体验（4）</div>
+
+    <div class="card spot-card">
+      <div class="head">
+        <div class="card-title">大湾村 / S 湾</div>
+        <div class="meta-line" style="margin-top:0;flex:0 0 auto"><span class="tag sec">次</span><span class="tag">D2</span></div>
+      </div>
+      <div class="meta-line"><span class="tag">🕐 傍晚</span><span class="tag">⏱ 1.5-2h</span><span class="tag">🚗 15min</span></div>
+      <div class="why">湖岸散步，看日落</div>
+      <div class="play">西岸 S 弯公路视野开阔，人比东岸少。傍晚沿湖散步吹风等日落，看完回酒店吃晚餐，节奏很松。</div>
+      <a class="addr" href="https://maps.apple.com/?q=抚仙湖网红S湾"><span class="pin">📍</span> 澄江市右所镇大湾村 · 环湖东路沿线（导航"抚仙湖网红S湾"，免费 · 路边停车）</a>
+    </div>
+
+    <div class="card spot-card">
+      <div class="head">
+        <div class="card-title">明星鱼洞</div>
+        <div class="meta-line" style="margin-top:0;flex:0 0 auto"><span class="tag sec">次</span><span class="tag">D3</span></div>
+      </div>
+      <div class="meta-line"><span class="tag">🕐 下午</span><span class="tag">⏱ 1-1.5h</span><span class="tag">🚗 40min</span></div>
+      <div class="why">老渔洞，湖畔短走</div>
+      <div class="play">看传统车水捕鱼的老渔洞，湖边栈道短走一圈。可快可慢，累了随时撤，衔接下午回酒店午休。</div>
+      <a class="addr" href="https://maps.apple.com/?q=明星鱼洞"><span class="pin">📍</span> 江川区江城镇明星村 · 抚仙湖西岸 G245 澄川线旁（门票15元）</a>
+    </div>
+
+    <div class="card spot-card">
+      <div class="head">
+        <div class="card-title">孤山</div>
+        <div class="meta-line" style="margin-top:0;flex:0 0 auto"><span class="tag sec">次</span><span class="tag">D3 弹性</span></div>
+      </div>
+      <div class="meta-line"><span class="tag">🕐 下午</span><span class="tag">⏱ 1.5-2h</span><span class="tag">🚗 约 45min</span></div>
+      <div class="why">湖中孤岛，可乘船登岛</div>
+      <div class="play">抚仙湖唯一湖心岛，码头乘船往返，岛上绕行看湖景。风浪大、娃累或时间紧就放弃，改泳池温泉。</div>
+      <a class="addr" href="https://maps.apple.com/?q=江川孤山风景区"><span class="pin">📍</span> 江川区江城镇抚仙湖南部孤山风景区（孤山码头乘船登岛 · 船+登岛约60元/人）</a>
+    </div>
+
+    <div class="card spot-card">
+      <div class="head">
+        <div class="card-title">樱花谷</div>
+        <div class="meta-line" style="margin-top:0;flex:0 0 auto"><span class="tag sec">次</span><span class="tag">D4</span></div>
+      </div>
+      <div class="meta-line"><span class="tag">🕐 下午</span><span class="tag">⏱ ≤1h</span><span class="tag">🚗 10-15min</span></div>
+      <div class="why">玩沙秋千，轻松亲子</div>
+      <div class="play">在海豚之家附近，午饭后顺路到。秋千、沙坑让孩子再放电半小时，轻松过渡到回酒店退房转场。</div>
+      <a class="addr" href="https://maps.apple.com/?q=抚仙湖樱花谷"><span class="pin">📍</span> 澄江市抚仙湖环湖路7号 · 水下古城旁（门票10元 · 10:00-18:00）</a>
+    </div>
+
+    <div class="group-lbl"><span class="bar"></span>备选（时间富余 / 原计划受阻时）</div>
+
+    <div class="card spot-card">
+      <div class="head">
+        <div class="card-title">澄江化石地博物馆</div>
+        <div class="meta-line" style="margin-top:0;flex:0 0 auto"><span class="tag alt">备</span></div>
+      </div>
+      <div class="meta-line"><span class="tag">🕐 下午</span><span class="tag">⏱ 1.5-2h</span><span class="tag">🚗 15-20min</span></div>
+      <div class="why">寒武纪化石 · 免门票 · 室内</div>
+      <div class="play">世界自然遗产澄江化石地，看"生命大爆发"古生物化石，展陈对孩子友好。时间富余或下雨天去，建议提前预约。</div>
+      <a class="addr" href="https://maps.apple.com/?q=澄江化石地自然博物馆"><span class="pin">📍</span> 澄江市右所镇新村线翡翠湾北800米（免费 · 周一闭馆 · 需小程序预约）</a>
+    </div>
+
+    <div class="card spot-card">
+      <div class="head">
+        <div class="card-title">广龙小镇</div>
+        <div class="meta-line" style="margin-top:0;flex:0 0 auto"><span class="tag alt">备</span><span class="tag">晚饭后</span></div>
+      </div>
+      <div class="meta-line"><span class="tag">🕐 傍晚</span><span class="tag">⏱ 30min</span><span class="tag">🚗 15min</span></div>
+      <div class="why">夜市小吃，睡前遛弯</div>
+      <div class="play">抚仙湖东岸小镇，晚饭后散步逛夜市，买水果零嘴、看湖边夜景。不是必去项，累了就在酒店休息。</div>
+      <a class="addr" href="https://maps.apple.com/?q=抚仙湖广龙小镇"><span class="pin">📍</span> 澄江市龙街街道抚仙湖北岸广龙片区 · 澄川线旁（星光夜市晚上开）</a>
+    </div>
+
+    <div class="card spot-card">
+      <div class="head">
+        <div class="card-title">紫陶街</div>
+        <div class="meta-line" style="margin-top:0;flex:0 0 auto"><span class="tag alt">备</span><span class="tag">D4 晚</span></div>
+      </div>
+      <div class="meta-line"><span class="tag">🕐 傍晚</span><span class="tag">⏱ 30-45min</span><span class="tag">🚗 5-10min</span></div>
+      <div class="why">建水紫陶，夜市小店</div>
+      <div class="play">建水夜逛选项，紫陶小店与小吃摊连成街，顺手挑个小杯盏当纪念。娃困或逛累随时回酒店，看心情的加餐。</div>
+      <a class="addr" href="https://maps.apple.com/?q=建水紫陶街"><span class="pin">📍</span> 建水县建万公路与青山路交汇处向东120米路北 · 广慈湖壹号旁（夜市约19:00后）</a>
+    </div>
+
+    <div class="card spot-card">
+      <div class="head">
+        <div class="card-title">朱家花园</div>
+        <div class="meta-line" style="margin-top:0;flex:0 0 auto"><span class="tag alt">备</span></div>
+      </div>
+      <div class="meta-line"><span class="tag">🕐 上午</span><span class="tag">⏱ 1-1.5h</span><span class="tag">🚗 约 10min</span></div>
+      <div class="why">滇南民居大观园</div>
+      <div class="play">清末大宅号称"滇南大观园"，院落亭台层层套叠、室内多不怕晒。小火车停运或时间富余时的古城首选。</div>
+      <a class="addr" href="https://maps.apple.com/?q=建水朱家花园"><span class="pin">📍</span> 建水县临安镇翰林街16号（近书院街 · 香满楼在其大门前行约30米）</a>
+    </div>
+
+    <div class="card spot-card">
+      <div class="head">
+        <div class="card-title">文庙 / 朝阳楼（内部）</div>
+        <div class="meta-line" style="margin-top:0;flex:0 0 auto"><span class="tag alt">备</span></div>
+      </div>
+      <div class="meta-line"><span class="tag">🕐 上午</span><span class="tag">⏱ ≤1h</span><span class="tag">🚗 约 10min</span></div>
+      <div class="why">全国第二大文庙</div>
+      <div class="play">规模仅次于曲阜，泮池、牌坊、大成殿沿中轴线走约 40 分钟可逛完。与朝阳楼入内择一即可，不贪多。</div>
+      <a class="addr" href="https://maps.apple.com/?q=建水文庙"><span class="pin">📍</span> 建水县临安镇临安路268号（文庙）· 朝阳楼：太史巷14号</a>
+    </div>
+  </section>
+
+<!-- ========== Tab 4 · 餐饮 ========== -->
+  <section id="tab-food" data-page-node-id="rY9FRUYWeWtLUt8Fo8R0ZC">
+    <div class="page-title" data-page-node-id="IPKEsXFft211ZnkN6ADXsO">餐饮安排（10 店）</div>
+
+    <div class="sec-block" data-page-node-id="YUpiU0q5NRkG9nrtQlM5HR">
+      <div class="sec-title warn" data-page-node-id="ZCydamnhXHDkETW6rTBo2V">D1 10/3 · 晚</div>
+      <div class="card" data-page-node-id="oscY8KTjCMk0ZStDGY7QHj">
+        <div class="meal" data-page-node-id="7HVKjVyChaw2CWxrxGNONQ"><div class="card-title" data-page-node-id="Dd5bWCvANIsNPzDXOQUCKL">万达文华酒店内</div><div class="price" data-page-node-id="qRtpy6vk2wjQVMMW05y8Jm">人均 —</div></div>
+        <div class="food-list" data-page-node-id="CoTlwOeaGIeyIp41kS8tln">清淡热菜、面饭类</div>
+        <a class="addr" href="https://maps.apple.com/?q=抚仙湖万达文华酒店"><span class="pin">📍</span> 澄江市右所镇环湖北路8号 · 抚仙湖万达文华酒店内（不用出门，落座即吃）</a>
+      </div>
+    </div>
+
+    <div class="sec-block" data-page-node-id="AGeX0cDN2oS5vNf4ZJyCgL">
+      <div class="sec-title warn" data-page-node-id="KqHVqIFfLi6QLZhG1PoAyy">D2 10/4</div>
+      <div class="card" data-page-node-id="fTFG6rjcG4ZousHRlTIKE7">
+        <div class="meal" data-page-node-id="v3QnAd1LyMP7ojm5Pj3ptP"><div class="card-title" data-page-node-id="vtHuwZASt7YGwRgAUCzdER">午 · 龙阳鱼庄</div><div class="price" data-page-node-id="XDz6USwok3E1NBsHWMOcGY">¥50-80</div></div>
+        <div class="food-list" data-page-node-id="VDLf0fdTdFMLUWjCBqAYZJ">石锅/铜锅鱼、洋芋饭、银鱼煎蛋、时蔬<br data-page-node-id="OMotAq0GU7zA3Pz2CWVqRL"><span style="color:var(--ink-3)" data-page-node-id="vC7S7RiPC35uicf9aWU1Xq">备：渔米香（同片区就近换）</span></div>
+        <a class="addr" href="https://maps.apple.com/?q=龙阳鱼庄"><span class="pin">📍</span> 澄江市右所镇湖畔圣水渔村商业街5-2-108号（月亮湾湿地公园正对面 · 备选渔米香在同商业街）</a>
+      </div>
+      <div class="card" data-page-node-id="b7RbvDwTUGgQCHDhspYB0t">
+        <div class="meal" data-page-node-id="OZ03NQPcqZV7ttii9ZERqr"><div class="card-title" data-page-node-id="un1ZaFkRldjOEELF3rFMSy">晚 · 归心园 · 湖景石锅鱼</div><div class="price" data-page-node-id="yz9NJM84G7McR7NkgXCTuG">¥60-70</div></div>
+        <div class="food-list" data-page-node-id="5eLwTIZhFHdHEs14ifM4m2">草帽石锅鱼、银鱼煎蛋、洋芋焖饭<br data-page-node-id="mcEM5WpsX898T8BKBmCm3t"><span style="color:var(--ink-3)" data-page-node-id="HaiLNua1HP0g3lgU2uLAWo">排队或娃累 → 回酒店</span></div>
+        <a class="addr" href="https://maps.apple.com/?q=归心园湖景石锅鱼鱼庄"><span class="pin">📍</span> 澄江市右所镇澄华线大湾村15号（临湖位需 18:30 前到，晚了只能坐大堂）</a>
+      </div>
+    </div>
+
+    <div class="sec-block" data-page-node-id="oKVlD0Ms0C97GnFUsCnV9H">
+      <div class="sec-title warn" data-page-node-id="bDHOMbGmqJaqkhTJWoyMXy">D3 10/5</div>
+      <div class="card" data-page-node-id="MPf67OKxwERvC56xs2kBYi">
+        <div class="meal" data-page-node-id="cQzLzOT1qkMkxI99ZuNDuY"><div class="card-title" data-page-node-id="Cb0okVvPMm5SqTEW83gHQO">午 · 明星鱼洞风味食馆</div><div class="price" data-page-node-id="dw3z2gobUCo8VpBtlsgkP8">¥60-90</div></div>
+        <div class="food-list" data-page-node-id="nkQBLxQMzqFCdX7PXhMsVh">铜锅鱼、银鱼煎蛋、洋芋饭</div>
+        <a class="addr" href="https://maps.apple.com/?q=明星鱼洞"><span class="pin">📍</span> 江川区江城镇明星村 · 明星鱼洞景区旁（G245 澄川线，与下午行程零绕路）</a>
+      </div>
+      <div class="card" data-page-node-id="iHrxcC7WalXyZB7BuwhKlt">
+        <div class="meal" data-page-node-id="5zlh4Nnti6PjKt5eSFYFVa"><div class="card-title" data-page-node-id="tcgde9qKAS0NME8FZEb6Bf">晚 · 希尔顿 · 御玺中餐厅</div><div class="price" data-page-node-id="uoGrnzF5stvgxI8eOAcr3p">¥150+</div></div>
+        <div class="food-list" data-page-node-id="FKQ7qbzTrNBWcZExljLkSa">铜锅火腿洋芋饭、宜良脆皮小刀鸭、嫩牛肉、时蔬<br data-page-node-id="ZKFqkEQYjO8M74VsvgSYw1"><span style="color:var(--ink-3)" data-page-node-id="1bdBmpL1VjDnVLTUpS8dor">全程唯一品质云南菜</span></div>
+        <a class="addr" href="https://maps.apple.com/?q=抚仙湖希尔顿酒店"><span class="pin">📍</span> 澄江市环湖东路10号 · 抚仙湖希尔顿酒店内 · 御玺中餐厅（可请礼宾订位）</a>
+      </div>
+    </div>
+
+    <div class="sec-block" data-page-node-id="XTUBcxYgjBtwec7K6SoScg">
+      <div class="sec-title warn" data-page-node-id="qn8UJzKikugx0h1AGAubun">D4 10/6</div>
+      <div class="card" data-page-node-id="W64hLnnADnlzQoU284tSRT">
+        <div class="meal" data-page-node-id="3vD5L9LBMON3cDRkMbsI9o"><div class="card-title" data-page-node-id="QIoKxpRNRK4DzOnZ0dgPc1">午 · 澄里云南过桥米线</div><div class="price" data-page-node-id="MM1hFbWgBjgfypQcTCN3MR">¥20-30</div></div>
+        <div class="food-list" data-page-node-id="2la91ho0aG84bZtwsbQfG0">过桥米线、清汤米线（少辣）· 快进快出</div>
+        <span class="addr"><span class="pin">📍</span> 导航搜「澄里云南过桥米线」（门牌未能核实，出发前在地图 App 确认营业点）</span>
+      </div>
+      <div class="card" data-page-node-id="2GeELFz8IXdyNTBrxQMWu6">
+        <div class="meal" data-page-node-id="5T8TgEGexDhFLU7gSaM7BB"><div class="card-title" data-page-node-id="rifHUwYFs78XPzuoY1wrgz">晚 · 香满楼（临安路店）</div><div class="price" data-page-node-id="PRw92HdbdRm0I2EmBZMx2R">¥62</div></div>
+        <div class="food-list" data-page-node-id="ECgLqBIqqFhh7Anv8BLfTw">汽锅鸡、草芽炒肉片、老奶洋芋、烤豆腐</div>
+        <a class="addr" href="https://maps.apple.com/?q=建水香满楼"><span class="pin">📍</span> 建水县临安镇翰林街63号附6号（朱家花园大门前行约30米 · 11:00-21:00）</a>
+      </div>
+    </div>
+
+    <div class="sec-block" data-page-node-id="dBLMVxSsW5hG41AHjXAJC8">
+      <div class="sec-title warn" data-page-node-id="hS86aH6igta9Li9bXbvUPD">D5 10/7</div>
+      <div class="card" data-page-node-id="Wnprmw92ZacqyDw38Mbsfh">
+        <div class="meal" data-page-node-id="f2Zfo8SUS7DQCLlqSlAqhF"><div class="card-title" data-page-node-id="1nCzjuuMmOKvtjwNYGiXt0">午 · 宝兴楼（广慈路店）</div><div class="price" data-page-node-id="TIEi1RTWEQ46KMamk8oHRL">¥61</div></div>
+        <div class="food-list" data-page-node-id="fo9nRKkZNb72xcg4kmhdeu">汽锅鸡、过桥米线、建水烤豆腐、草芽菜<br data-page-node-id="Eue87tiAfT6XRc8rsWBqNL"><span style="color:var(--ink-3)" data-page-node-id="mGmlx4dKUkCXtvlQC6iH2T">赶时间 → 味道临安米线</span></div>
+        <a class="addr" href="https://maps.apple.com/?q=建水宝兴楼"><span class="pin">📍</span> 建水大道与广慈路交叉口朝临安花园方向约200米（广慈湖边 · 返程顺路）</a>
+      </div>
+      <div class="card" data-page-node-id="2zlFSUCcVGQ95GulveCO5a">
+        <div class="meal" data-page-node-id="Bh1jAQICXdHsaT7KfpvHVR"><div class="card-title" data-page-node-id="ejGbj9lv6ur5JqxuqTCqWA">晚 · 老滇部落 · 长水旗舰店</div><div class="price" data-page-node-id="HGBjXwGKUjAWbtgdH3THls">¥67</div></div>
+        <div class="food-list" data-page-node-id="C188mJn8tAUluQjgNqwMst">生焗鲈鱼、老火腿、玉米粑粑、黄金大洋芋、时蔬<br data-page-node-id="OUbki8j9xtFqxg7xEWRTJ1"><span style="color:var(--ink-3)" data-page-node-id="HMk6N7C1nClBwTMpNSRheE">认准滇兴街 1 号 · 同街备选 彩云轩</span></div>
+        <a class="addr" href="https://maps.apple.com/?q=老滇部落长水旗舰店"><span class="pin">📍</span> 昆明市官渡区大板桥街道滇兴街1号（长水机场附近 · 10:00-22:00 · 赶机前顺路）</a>
+      </div>
+    </div>
+
+    <div class="sec-block" data-page-node-id="Hjqp9EplVmN2HFXbTH9CLX">
+      <div class="sec-title" data-page-node-id="EPGyww5Ws0XT8fIwoZjB8b">备用 · 小吃</div>
+      <div class="card" data-page-node-id="GIxJzRECWbccyQhthnjyFw">
+        <div class="meal" data-page-node-id="K2PrsjoWjFCj6gFP2UP8sU"><div class="card-title" data-page-node-id="KM5r7TgjrrEZX3REzLGo8z">板井豆腐坊</div><div class="price" data-page-node-id="EoWNi1GCuHJxWcsPh02l5Z">¥10</div></div>
+        <div class="food-list" data-page-node-id="WMdNZktgDwnIFc5IsXavwh">烤豆腐、豆花、豆浆</div>
+        <a class="addr" href="https://maps.apple.com/?q=建水大板井"><span class="pin">📍</span> 建水古城西门 · 大板井正对面（自助豆花豆浆约5元/人 · 顺手看古井）</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Tab 5 · 更多 ========== -->
+  <section id="tab-more" data-page-node-id="OFtwoCRwOE7RovHYus1vw2">
+    <div class="page-title" data-page-node-id="Db8k9Ikusc1Dgb2qUuAnOP">更多</div>
+    <div class="sec-block" data-page-node-id="zXhVQfrkpLSDw85ISt2PKY">
+      <div class="card" style="padding:6px var(--s4)" data-page-node-id="aCCd23Zpmh2TrZG4UhCkIK">
+        <button class="list-row" onclick="openSheet('sheet-hotel')" data-page-node-id="Hd3A1RfI9UEt0Qz6GhFzCV">
+          <span class="r-l" data-page-node-id="hLBGNPCTdDdKGBLGkO5oVk"><span class="ico" data-page-node-id="BGh9ad6ybA3ZBDHGKd7dHc">🏨</span><span data-page-node-id="biPNQw29Itq960KlrxNgGn"><b data-page-node-id="dKELaQc1lEGCzSZ6icCVSY">酒店总览</b><span data-page-node-id="TGe91Lop506mH1D3LzzFM9">3 家 · 每晚入住/退房</span></span></span>
+          <span class="chev" data-page-node-id="Y3FjKGHVNP2q7inYOPyNky">›</span>
+        </button>
+        <button class="list-row" onclick="openSheet('sheet-budget')" data-page-node-id="q8iDCz9I9AqjoLwdxIiXQx">
+          <span class="r-l" data-page-node-id="lW1WHeWFygX6PcUqFZPoN9"><span class="ico" data-page-node-id="f5pcwYDQo5BDHaK8pzXHrP">💰</span><span data-page-node-id="MCGm6DgUQxpVAtNrPjCHZY"><b data-page-node-id="1P5YcuFl4P3AiedYauwmQb">预算</b><span data-page-node-id="M9iMuaxFKjDzNiozIq08Es">合计约 ¥14,100-14,800</span></span></span>
+          <span class="chev" data-page-node-id="XRPoCVPcuSDTJFr19ZgYiz">›</span>
+        </button>
+        <button class="list-row" onclick="openSheet('sheet-check')" data-page-node-id="oiN0bYZAQqs1tmpVOBi0MS">
+          <span class="r-l" data-page-node-id="HIrODYrGE6ghnL2UrpQemw"><span class="ico" data-page-node-id="JFrcktdN1r3v4ITkfF34Mz">✅</span><span data-page-node-id="SN3LACAwFFjOi9gQ8GmIB5"><b data-page-node-id="R6RjnXFC0RqiBk21eHKeHw">出发前核验清单</b><span data-page-node-id="wXjqgJyoHIiGaIjgFzvZhk">抢票 / 订房 / 逐周核对</span></span></span>
+          <span class="chev" data-page-node-id="dPOrckCg7hs0kuUiBbBchJ">›</span>
+        </button>
+        <button class="list-row" onclick="openSheet('sheet-luggage')" data-page-node-id="3PTIWJXotNKGDGmqeo30dS">
+          <span class="r-l" data-page-node-id="KyWQG8qpPLW0lgUk5MpVzl"><span class="ico" data-page-node-id="pmAMRSnWSYR8UnWhRQOOxM">🧳</span><span data-page-node-id="lb34GTpl6854uPpJhCgk5q"><b data-page-node-id="Kvziel1Ltgsl12KD0aGbwS">行李清单</b><span data-page-node-id="H5ZpkrwiG82IXPnhAFPIDZ">温差 10°C+ · 防晒驱蚊</span></span></span>
+          <span class="chev" data-page-node-id="JnCWPInIH5XTxoJ4ijHuzn">›</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="sec-block" data-page-node-id="j8F5yY9RbdtMdALvMskf4R">
+      <div class="sec-title" data-page-node-id="HobEiHYAUnqAwuDlyU20Tz">⚠ 提醒</div>
+      <div class="card" data-page-node-id="BAjtO1ha8BwetIe5pESBlN">
+        <div class="food-list" style="font-size:var(--fs-sec)" data-page-node-id="9x58rCfCDbm2PbWnOHRfXt">
+          · 万达文华 3 晚<b class="tag" data-page-node-id="QNq327H0sdP0EcMRUkVjsU">已确认下单</b>（9/7）<br data-page-node-id="kVwsNWDuFDqm9OxRfw6Qeg">
+          · 建水临安酒店（10/6 晚）<b class="tag" data-page-node-id="g3n9OlUtD7liQBVcczTmFN">已订</b> ✅<br data-page-node-id="H41fARQwHVl9fRVynd4OHv">
+          · 蔚景温德姆（10/7 晚）<b class="tag" data-page-node-id="g3n9OlUtD7liQBVcczTmFW">已订</b> ✅<br data-page-node-id="H41fARQwHVl9fRVynd4OHw">
+          · 10/6 为周二，无朝阳楼灯光秀（仅周五六 20:30）<br data-page-node-id="JVL3jyGK5Q8UJL1jrWfcim">
+          · 返程高峰安检预留 1.5h
+        </div>
+      </div>
+    </div>
+
+    <div class="ver" data-page-node-id="Urbe8Yb1rEA2MRGAGO4OzY">V21 App 版 · 景点/餐饮已补全地址（点按 📍 唤起地图导航）</div>
+  </section>
+</main>
+
+<!-- ============ 固定底部导航 ============ -->
+<nav class="bottom-nav" aria-label="底部导航" data-page-node-id="JWpj2GdHkihmI6LVob4Z92">
+  <button class="active" data-tab="tab-home" data-page-node-id="rWWvI85cDVL7s02Xvj53IZ"><span class="ico" data-page-node-id="ycsP1dIcxIR62rXST8jPVl">🏠</span>首页</button>
+  <button data-tab="tab-plan" data-page-node-id="IzaybkrMV9tsvi9mk4drZB"><span class="ico" data-page-node-id="BfDsxvnHQ2Hcf220ZyAT3H">🗓</span>行程</button>
+  <button data-tab="tab-spots" data-page-node-id="eieiS65twTOGQZeqX39gWd"><span class="ico" data-page-node-id="GBRYl39Ym9ntmyLFKXM8hQ">📍</span>景点</button>
+  <button data-tab="tab-food" data-page-node-id="0gqDZnmyRfV5i0XFK51YC6"><span class="ico" data-page-node-id="QwANY9Jr1MTF0JFvQiMCET">🍜</span>餐饮</button>
+  <button data-tab="tab-more" data-page-node-id="aRlbFGfnmGwVVcn0CjOYBl"><span class="ico" data-page-node-id="2TooDgQMGDywaFdahpOTDe">⋯</span>更多</button>
+</nav>
+
+<!-- ============ Bottom Sheet ============ -->
+<div class="sheet-mask" onclick="closeSheet()" data-page-node-id="S9JR6dwrAbMBGWl4jJwM4E"></div>
+
+<!-- Sheet · 更多 -->
+<div class="sheet" id="sheet-more" role="dialog" aria-label="更多操作" data-page-node-id="pG5QfDiv56Rf9S4vp93euw">
+  <div class="grab" data-page-node-id="sWAp4BLVjoFdaytkSC3Dbi"></div>
+  <button class="close-x" onclick="closeSheet()" aria-label="关闭" data-page-node-id="cH3NmKCInJUOfzdjD6VN3P">✕</button>
+  <div class="sheet-title" data-page-node-id="miJe8U2bb5HG3C7QiOsuEK">关于本手册</div>
+  <div class="food-list" style="font-size:var(--fs-sec);color:var(--ink-2)" data-page-node-id="Dr28DMH7RPbkBx6fES5BCI">
+    V21 App 版：为手机旅途场景重构（行程 / 景点 / 餐饮 / 预算 / 核验清单），内容与 V19 一致。
+  </div>
+  <div class="btn-row" style="display:flex;gap:var(--s2);margin-top:var(--s4)" data-page-node-id="jGemOrQwbdXpHXAJxQ7jBT">
+    <button class="btn" style="flex:1;min-height:44px;border-radius:12px;border:1px solid var(--line);background:var(--surface);font-size:15px;font-weight:600;color:var(--ink);cursor:pointer" onclick="if(navigator.share){navigator.share({title:document.title,url:location.href})}" data-page-node-id="87AXsOQF1yBVPhOVA0CuCY">分享攻略</button>
+    <button class="btn" style="flex:1;min-height:44px;border-radius:12px;border:1px solid var(--line);background:var(--surface);font-size:15px;font-weight:600;color:var(--ink);cursor:pointer" onclick="closeSheet()" data-page-node-id="CitdMAIl2Tr4SDhg4hoXJl">关闭</button>
+  </div>
+</div>
+
+<!-- Sheet · 酒店 -->
+<div class="sheet" id="sheet-hotel" role="dialog" aria-label="酒店总览" data-page-node-id="HFO1V2I4Fs7LbyBlJnNQTD">
+  <div class="grab" data-page-node-id="TulbGaBDpvhkYtEuj4QMjL"></div>
+  <button class="close-x" onclick="closeSheet()" aria-label="关闭" data-page-node-id="zGmToj2ovWvwU29nABD6wE">✕</button>
+  <div class="sheet-title" data-page-node-id="SBwq3SMRlb7CZobVn536q2">🏨 酒店总览</div>
+
+  <div class="card" style="box-shadow:none;border:1px solid var(--line)" data-page-node-id="SbpDWuAdLZGYvuBk0fkYPK">
+    <div class="card-title" data-page-node-id="FIr3ut8N1GO9ZG4SHFAmfC">抚仙湖 · 万达文华 <span class="tag" style="margin-left:6px;background:var(--green-soft);color:var(--green);font-weight:650" data-page-node-id="ftCqpJ6GwYe1ohzjxrOEMY">已确认</span></div>
+    <div class="food-list" data-page-node-id="ROdF1T5iV4v6pBxWTTkxmu">10/3 入住 – 10/6 退房 · 3 晚<br data-page-node-id="4XcBNVhyA11ZC29tDcVxrJ">月亮湾日落步行可达 · 泳池 / 温泉<br data-page-node-id="8GOM89xhZH4EFbaw5WFLfz"><b style="color:var(--green)" data-page-node-id="7ozl8PidUf5r9ClUKieS8G">✅ 已确认下单（9/7）</b></div>
+  </div>
+  <div class="card" style="box-shadow:none;border:1px solid var(--line)" data-page-node-id="2Cunx07AMiPCWw5Fx0sEfb">
+    <div class="card-title" data-page-node-id="Fmf6Ox7pEjm5ChqrkATJZk">建水 · 临安酒店 <span class="tag" style="margin-left:6px;background:var(--green-soft);color:var(--green);font-weight:650" data-page-node-id="MVI0dQuVdWgba2EyXDa9ve">已订</span></div>
+    <div class="food-list" data-page-node-id="QESq53Ulq3zTmHYGi6wFf8">10/6 入住 – 10/7 退房 · 1 晚<br data-page-node-id="4nHpfOXYhd3QeWaLflrFf3">近古城 · 车停酒店步行/打车进古城<br data-page-node-id="liwAOwrIfuXHkaT1GdrY4p"><b style="color:var(--green)" data-page-node-id="hpcGxwgHsC57g6LnoIIJLB">✅ 已订（9/7）</b></div>
+  </div>
+  <div class="card" style="box-shadow:none;border:1px solid var(--line)" data-page-node-id="91YFSQykaPWc1rKUOuXBjw">
+    <div class="card-title" data-page-node-id="tD4vmk2LaEGCZGS0rJlaoG">昆明 · 蔚景温德姆 <span class="tag" style="margin-left:6px;background:var(--green-soft);color:var(--green);font-weight:650">已订</span></div>
+    <div class="food-list" data-page-node-id="J6p17tFm9AEAvJgFHSgLKB">10/7 入住 – 10/8 退房 · 1 晚<br data-page-node-id="sx2feuiV9cqUpieGgT43wt">📍 官渡区滇兴街199号空港商务广场4号楼<br data-page-node-id="sx2feuiV9cqUpieGgT43wU">近长水机场 · 晚餐老滇部落同街<br data-page-node-id="sx2feuiV9cqUpieGgT43wV"><b style="color:var(--green)">✅ 已订（9/7）</b></div>
+  </div>
+</div>
+
+<!-- Sheet · 预算 -->
+<div class="sheet" id="sheet-budget" role="dialog" aria-label="预算" data-page-node-id="dOWqgu9TTBvrnmWQXylVaQ">
+  <div class="grab" data-page-node-id="QOdkVW1LcaGXRdMLpxBboT"></div>
+  <button class="close-x" onclick="closeSheet()" aria-label="关闭" data-page-node-id="eOGa4v6uB3mVtQsJLnTQqx">✕</button>
+  <div class="sheet-title" data-page-node-id="9GWd7oDWaWisdkRkl8GaC7">💰 预算</div>
+  <div class="card" style="box-shadow:none;border:1px solid var(--line);padding:10px var(--s4)" data-page-node-id="umKf179Uy4sWGQUc2Ktw60">
+    <div class="kv-row" data-page-node-id="JSlHjuaebQ5hrnvWGHjKd2"><span class="k" data-page-node-id="OUHWkPC6jfgCVqrMrPTG04">往返机票</span><span class="v num" data-page-node-id="6ZLecaEn2CFaGB0okj68gV">¥4,000</span></div>
+    <div class="kv-row" data-page-node-id="2EgT6NHqHOf63Y9mGldMAf"><span class="k" data-page-node-id="AYG35mL2bgKrdi40oLi635">万达文华 3 晚</span><span class="v num" data-page-node-id="KQ8aw8mGOYcE0blUPNfaJh">¥3,417</span></div>
+    <div class="kv-row" data-page-node-id="HLJtTY5yum7TgphIBA8JKy"><span class="k" data-page-node-id="zFwFd1HI94QHDMXBsnkFpO">蔚景温德姆 1 晚</span><span class="v num" data-page-node-id="DqC4WONWBBz1M1qnNTotBN">¥0（积分/免费）</span></div>
+    <div class="kv-row" data-page-node-id="YD5RCkahh4UdpJYoX88Wkq"><span class="k" data-page-node-id="VEgH4JV1nmkfzuoTJTO5hc">建水临安 1 晚</span><span class="v num" data-page-node-id="kBB8CqKAHwE5ek6wgQzz2e">¥525</span></div>
+    <div class="kv-row" data-page-node-id="XmyVAo1N8MUS4PTPOckpGT"><span class="k" data-page-node-id="B2l4OoaFgyktdQ9yWsrEUo">神州租车</span><span class="v num" data-page-node-id="CUEh5zOK2DUQMLPGJG00xa">¥1,928</span></div>
+    <div class="kv-row" data-page-node-id="64nwFdXEkBUk6g5UOjvH4T"><span class="k" data-page-node-id="rOJTrAISUQ8StI6UCyG6kt">门票（海豚之家 + 建水景点）</span><span class="v num" data-page-node-id="90lbVgkVcl39iLAtTeNxdv">¥500-900</span></div>
+    <div class="kv-row" data-page-node-id="bO7DTffAfIeNoGmPqsaOiM"><span class="k" data-page-node-id="qKIRfArpTW3aAmAhBQC7Od">餐饮</span><span class="v num" data-page-node-id="KmPAob9xxaNLchuIJwkHYl">¥2,000-2,300</span></div>
+    <div class="kv-row" data-page-node-id="xwlb0K9o8FKyu90MmbUn5n"><span class="k" data-page-node-id="VMYyaCpIOuGvM1oCkMuwsE">其他</span><span class="v num" data-page-node-id="WDBjnNDULrA49shCou2Ndj">约 ¥700</span></div>
+    <div class="kv-row total" data-page-node-id="CkDmP4CoKH9CLZpV3RuVhh"><span class="k" data-page-node-id="98dApR5RWi9uVbFFy4WOrG">合计</span><span class="v num" data-page-node-id="qLMbaxvuFQ1F1X8qCJuTjW">约 ¥14,100-14,800</span></div>
+  </div>
+</div>
+
+<!-- Sheet · 核验清单 -->
+<div class="sheet" id="sheet-check" role="dialog" aria-label="出发前核验清单" data-page-node-id="eUaaGnULlLNGuzTaErNwHC">
+  <div class="grab" data-page-node-id="5e6bPKWTdc3cqjYKw5dcVJ"></div>
+  <button class="close-x" onclick="closeSheet()" aria-label="关闭" data-page-node-id="f9znhRre4QfFVEXVwuSx82">✕</button>
+  <div class="sheet-title" data-page-node-id="XczIJ9vOMMrDu3046ewBbZ">✅ 出发前核验清单</div>
+  <div class="card" style="box-shadow:none;border:1px solid var(--line);padding:12px var(--s4)" data-page-node-id="Q19GA6BEfXVlzhgiVFi2hh">
+    <div class="check-item" data-page-node-id="TmiupieFMUroE71zk5WMOz"><span class="when" style="color:var(--green)" data-page-node-id="ryGYx20S307GBEeBNkcFmC">✅ 已完成 · 9/7</span>万达文华 3 晚已确认下单；建水临安酒店（10/6 晚）已订；蔚景温德姆（10/7 晚）已订；抢票闹钟需改到 10/2 00:00</div>
+    <div class="check-item" data-page-node-id="p3momguthxlVpV3vq94FmG"><span class="when red" data-page-node-id="iser9gjGe2qYyaEIWA6vHl">10/2（周五）00:00</span>抢 10/7 小火车票：官方「每日零点开售第五天车票」，10/7 票 = 10/2 零点开售（10/1 深夜守零点）。目标 101 车次去程（09:00 临安始发）+ 102 返程（13:00 团山发）；⏰ 把 12:00 闹钟改到 00:00</div>
+    <div class="check-item" data-page-node-id="19ERVRdmanEeH28RtHeqQZ"><span class="when" data-page-node-id="jpzQcOpLmXuoma9OULEiHw">出发前 7-10 天</span>昆明/澄江天气风力；小火车 101/102 车次开售与候补；月亮湾/沙滩收费政策；两店早餐儿童政策；主要餐厅营业</div>
+    <div class="check-item" data-page-node-id="bSq7nOIDuy5H3XygdI2Oda"><span class="when" data-page-node-id="BMweWSHZ7bDmXf9bGxciPO">出发前 3-5 天</span>小火车余票/换票规则；朱家花园购票；孤山船班风浪；温泉泳池儿童规则；海豚之家场次票价；化石馆预约</div>
+    <div class="check-item" data-page-node-id="ECwOHDHDGV7PNqPWbNVW7j"><span class="when" data-page-node-id="1JvdbSemWM3y2saq1IBf03">出发前 1-2 天</span>高德路线与国庆路况；停车点位；温德姆→长水路线；长水还车点位置与还车时间；老滇部落营业时间与订位</div>
+    <div class="check-item" data-page-node-id="OG4eCu5Rk3VZpZ7HsUNpQd"><span class="when amber" data-page-node-id="pMu1aywFNE3ITqtSLPTUCN">行李</span>白天短袖 + 早晚外套（温差 10°C+）；不下水，不带泳圈（室内恒温泳池另备泳衣）；防晒驱蚊雨具沙滩鞋；机上娱乐包前一晚装随身包</div>
+  </div>
+</div>
+
+<!-- Sheet · 行李 -->
+<div class="sheet" id="sheet-luggage" role="dialog" aria-label="行李清单" data-page-node-id="IBMTnEL5UNqHj7duIy3hQf">
+  <div class="grab" data-page-node-id="lx3DC4JdIB31GZgUrVu18H"></div>
+  <button class="close-x" onclick="closeSheet()" aria-label="关闭" data-page-node-id="qqSbhYFDJn0jTvW5C2swqe">✕</button>
+  <div class="sheet-title" data-page-node-id="z1QQzAHwAUyRUNElWCbJbE">🧳 行李清单</div>
+  <div class="card" style="box-shadow:none;border:1px solid var(--line)" data-page-node-id="ZK706mZvqB5bGWQdPFfgwO">
+    <div class="food-list" style="font-size:var(--fs-body);color:var(--ink)" data-page-node-id="JTZGDRiQFRnHFMBmZJ0S7l">
+      · 白天短袖 + 早晚外套（温差 10°C+）<br data-page-node-id="1ia89XovuzvGOVcuEamoCa">
+      · 不下水，不带泳圈（室内恒温泳池另备泳衣）<br data-page-node-id="Y4zTBPcESyH5gfsNyGVD7G">
+      · 防晒 · 驱蚊 · 雨具 · 沙滩鞋<br data-page-node-id="1HYtNIcjceCcpWRJNhf6VQ">
+      · 机上娱乐包前一晚装随身包
+    </div>
+  </div>
+</div>
+
+<script>
+/* 底部导航 Tab 切换（1 次点击切页） */
+document.querySelectorAll('.bottom-nav button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.bottom-nav button').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('main>section').forEach(s=>s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    window.scrollTo({top:0});
+  });
+});
+/* Day 切换（1 次点击切 Day） */
+const dayBtns=document.querySelectorAll('#dayTabs button');
+const dayPanels=document.querySelectorAll('.day-panel');
+dayBtns.forEach((btn,i)=>{
+  btn.addEventListener('click',()=>{
+    dayBtns.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    dayPanels.forEach((p,j)=>{p.style.display=(j===i)?'':'none'});
+    window.scrollTo({top:0});
+  });
+});
+/* Bottom Sheet（多 sheet 独立） */
+function openSheet(id){
+  document.body.classList.add('sheet-open');
+  document.getElementById(id).classList.add('open');
+}
+function closeSheet(){
+  document.body.classList.remove('sheet-open');
+  document.querySelectorAll('.sheet.open').forEach(s=>s.classList.remove('open'));
+}
+document.querySelectorAll('.sheet .grab').forEach(el=>el.addEventListener('click',closeSheet));
+</script>
+</body>
+</html>

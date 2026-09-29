@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>家庭健康周报 · 9月20日 — 9月26日</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: #f0f5f0;
+    color: #263238;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 600px; margin: 0 auto; background: #f6faf6; min-height: 100vh; }
+
+  .masthead {
+    background: linear-gradient(150deg, #174d1c 0%, #2e7d32 78%, #3c8f41 100%);
+    color: #fff; padding: 24px 22px 20px; text-align: left;
+    border-radius: 0 0 22px 22px;
+  }
+  .masthead .h1 { font-size: 24px; font-weight: 800; letter-spacing: 0.5px; }
+  .masthead .date { font-size: 15px; font-weight: 600; color: #d7ecda; margin-top: 3px; }
+
+  .inner { padding: 18px 16px 26px; }
+
+  .card { background: #fff; border-radius: 16px; box-shadow: 0 1px 5px rgba(27,94,32,.06); padding: 18px; margin-bottom: 14px; }
+  .sec-tag { font-size: 14px; font-weight: 800; color: #1b5e20; margin-bottom: 10px; letter-spacing: 0.3px; }
+
+  .score-num { font-size: 60px; font-weight: 800; color: #1b5e20; line-height: 1; letter-spacing: -1px; }
+  .score-num small { font-size: 20px; color: #78909c; font-weight: 600; letter-spacing: 0; }
+  .score-state { display:inline-block; font-size: 16px; font-weight: 800; color: #2e7d32; background:#e8f5e9; border-radius:999px; padding:3px 13px; margin:6px 0 8px; }
+  .score-note { font-size: 15px; color: #546e7a; }
+
+  .risk-row { display:flex; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid #eef3ee; }
+  .risk-row:last-child { border-bottom:none; }
+  .rk { font-size:15px; font-weight:800; color:#78909c; width:22px; flex:0 0 22px; text-align:center; }
+  .risk-name { font-size:16px; font-weight:600; color:#37474f; flex:1; }
+  .risk-coef { font-size:16px; font-weight:800; color:#455a64; width:34px; text-align:right; }
+  .lv { font-size:12px; padding:3px 9px; border-radius:999px; font-weight:800; white-space:nowrap; }
+  .lv-y { background:#fff6e0; color:#b26a00; }
+  .lv-g { background:#e8f5e9; color:#2e7d32; }
+  .lv-r { background:#ffe9e9; color:#c62828; }
+
+  .act { background:#fff; border-radius:16px; padding:16px 17px; margin-bottom:12px; border-left:6px solid #e0c35c; box-shadow:0 1px 5px rgba(27,94,32,.06); }
+  .act .act-name { font-size:19px; font-weight:800; color:#263238; }
+  .act .act-sub { font-size:13.5px; color:#6b6654; margin:2px 0 10px; }
+  .act .act-do { font-size:15px; color:#37474f; line-height:1.75; }
+  .act .act-do li { list-style:none; position:relative; padding-left:20px; margin-bottom:3px; }
+  .act .act-do li::before { content:"✓"; position:absolute; left:0; color:#2e7d32; font-weight:800; }
+
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+  .chip { background:#f3f8f3; border:1px solid #e4efe4; border-radius:12px; padding:12px 6px; text-align:center; }
+  .chip .k { font-size:13px; color:#90a4ae; }
+  .chip .v { font-size:18px; font-weight:800; margin-top:4px; }
+  .v.good { color:#2e7d32; }
+  .v.mid { color:#e07a00; }
+  .hint { font-size:14px; color:#607d8b; margin-top:10px; line-height:1.7; }
+
+  .fut-item { margin-bottom:12px; }
+  .fut-item:last-child { margin-bottom:0; }
+  .fut-k { font-size:14px; font-weight:800; color:#1b5e20; margin-bottom:6px; }
+  .fut-v { font-size:15px; color:#455a64; line-height:1.7; }
+  .fut-v b { color:#263238; }
+  .fut-end { margin-top:12px; padding-top:12px; border-top:1px dashed #d7e6d7; font-size:15px; font-weight:700; color:#1b5e20; }
+
+  .c-list { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+  .c-chip { font-size:13.5px; font-weight:700; color:#2e7d32; background:#fff; border:1px solid #c8e6c9; border-radius:999px; padding:5px 12px; }
+
+  .foot { font-size:12px; color:#a5b6a6; text-align:center; margin-top:18px; line-height:1.6; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 顶部：标题 + 日期（不放数据来源/状态徽章） -->
+  <div class="masthead">
+    <div class="h1">🏥 家庭健康周报</div>
+    <div class="date">9月20日 — 9月26日</div>
+  </div>
+
+  <div class="inner">
+
+    <!-- ⭐ 本周结论：健康指数 + 结论合并，首屏即结论 -->
+    <div class="card">
+      <div class="sec-tag">⭐ 本周结论</div>
+      <div class="score-num">77<small> / 100</small></div>
+      <div><span class="score-state">整体稳定 ↑1</span></div>
+      <div class="score-note">新冠降为低流行，流感进入秋季上升期</div>
+      <div class="c-list">
+        <span class="c-chip">全家尽早接种流感疫苗</span>
+        <span class="c-chip">运动挑雨停时段</span>
+        <span class="c-chip">出行备好雨具</span>
+      </div>
+    </div>
+
+    <!-- 📈 风险趋势：按系数降序，单列带序号列表 -->
+    <div class="card">
+      <div class="sec-tag">📈 风险趋势</div>
+      <div class="risk-row"><span class="rk">①</span><span class="risk-name">流感</span><span class="risk-coef">72</span><span class="lv lv-y">🟡 关注</span></div>
+      <div class="risk-row"><span class="rk">②</span><span class="risk-name">新冠</span><span class="risk-coef">48</span><span class="lv lv-y">🟡 关注</span></div>
+      <div class="risk-row"><span class="rk">③</span><span class="risk-name">儿童呼吸道病毒（鼻病毒 / 合胞病毒）</span><span class="risk-coef">44</span><span class="lv lv-g">🟢 无需</span></div>
+      <div class="risk-row"><span class="rk">④</span><span class="risk-name">手足口病 / 肠道</span><span class="risk-coef">40</span><span class="lv lv-g">🟢 无需</span></div>
+      <div class="risk-row"><span class="rk">⑤</span><span class="risk-name">阴雨降温</span><span class="risk-coef">34</span><span class="lv lv-g">🟢 无需</span></div>
+    </div>
+
+    <!-- 📊 需要行动：仅 ≥关注档 的疾病，每个一张卡 -->
+    <div class="sec-tag">📊 需要行动</div>
+    <div class="act">
+      <div class="act-name">流感</div>
+      <div class="act-sub">南方处于中流行水平，开学后学校聚集疫情明显增多；需行动，但不必紧张。</div>
+      <ul class="act-do">
+        <li>全家尽早接种流感疫苗，老人和孩子优先</li>
+        <li>孩子出现发热、咳嗽时居家休息、暂不入园</li>
+        <li>去菜场、医院等密闭场所佩戴口罩</li>
+      </ul>
+    </div>
+    <div class="act">
+      <div class="act-name">新冠</div>
+      <div class="act-sub">官方已定性为低流行水平，检出率连续 5 周下降，以轻症为主；无需改变生活计划。</div>
+      <ul class="act-do">
+        <li>有发热、咳嗽等不适时戴口罩、减少聚集</li>
+        <li>家中每天开窗通风</li>
+        <li>老人和有慢性基础病者按指引接种疫苗</li>
+      </ul>
+    </div>
+
+    <!-- 🚗 本周影响：三色块（🟢正常 / 🟡注意 / 🔴调整） -->
+    <div class="card">
+      <div class="sec-tag">🚗 本周影响</div>
+      <div class="grid-3">
+        <div class="chip"><div class="k">日常生活</div><div class="v good">🟢 正常</div></div>
+        <div class="chip"><div class="k">运动</div><div class="v mid">🟡 注意</div></div>
+        <div class="chip"><div class="k">出行</div><div class="v mid">🟡 注意</div></div>
+      </div>
+      <div class="hint">气温 16~26℃、体感舒适，很适合运动，但未来一周多小雨，建议挑雨停间隙跑，雨后路面湿滑，跑完及时换下湿衣。出行以阴雨为主（10月1—4日多小雨），带好雨具、备件外套。</div>
+    </div>
+
+    <!-- 🔮 未来展望：疾病趋势 + 天气趋势 + 结论 -->
+    <div class="card">
+      <div class="sec-tag">🔮 未来展望</div>
+      <div class="fut-item">
+        <div class="fut-k">疾病趋势</div>
+        <div class="fut-v"><b>流感</b>仍在秋季上行通道，南方保持中流行；<b>新冠</b>连续 5 周回落，已降至低流行水平；<b>鼻病毒、呼吸道合胞病毒</b>持续上升，以 14 岁以下儿童为主；<b>手足口病</b>进入夏秋季流行期，需留意发热与皮疹。</div>
+      </div>
+      <div class="fut-item">
+        <div class="fut-k">天气趋势</div>
+        <div class="fut-v">暑热结束，未来一周以阴雨为主，气温 <b>16~26℃</b>；无高温、无台风、无暴雨预警，运动条件整体良好，仅需避开降雨时段。</div>
+      </div>
+      <div class="fut-end">暂不需要调整整体生活计划。</div>
+    </div>
+
+    <div class="foot">数据来源:国家疾控中心 · 国家流感中心 · 上海疾控 · 高德天气<br>数据截至 2026年9月20日 当周</div>
+  </div>
+</div>
+</body>
+</html>
